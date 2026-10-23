@@ -13,7 +13,7 @@ local State = require(script.Parent.State)
 local Theme = require(script.Parent.Parent.UI.Theme)
 
 local C = Theme.Colors
-local ICONS = { PensionCoins = "🪙", GigaGems = "💎", Tickets = "🎟", EpicTickets = "⭐" }
+local ICONS = { PensionCoins = "💰", GigaGems = "💎", Tickets = "🎟", EpicTickets = "⭐" }
 
 local DailyController = {}
 

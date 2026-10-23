@@ -1,0 +1,98 @@
+{
+  "name": "MonOG-Playtest",
+  "tree": {
+    "$className": "DataModel",
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "Server": { "$path": "src/server" }
+    },
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "Shared": { "$path": "src/shared" }
+    },
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "Client": { "$path": "src/client" }
+      }
+    },
+    "Lighting": {
+      "$className": "Lighting",
+      "$properties": { "ClockTime": 0, "Brightness": 2, "Ambient": [0.35, 0.3, 0.5] }
+    },
+    "Workspace": {
+      "$className": "Workspace",
+      "Baseplate": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [256, 2, 256],
+          "Position": [0, -1, 0],
+          "Color": [0.1, 0.04, 0.2],
+          "Material": "SmoothPlastic"
+        }
+      },
+      "SpawnLocation": {
+        "$className": "SpawnLocation",
+        "$properties": { "Anchored": true, "Neutral": true, "Size": [8, 1, 8], "Position": [0, 0.5, 20] }
+      },
+      "AdoptionDoor": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [8, 12, 1],
+          "Position": [-20, 6, 0],
+          "Color": [0.43, 0.24, 0.12],
+          "Tags": ["GachaDoor"]
+        }
+      },
+      "TrainingBench": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [6, 1, 2],
+          "Position": [20, 1, 0],
+          "Color": [0.55, 0.35, 0.2],
+          "Tags": ["TrainingBench"]
+        }
+      },
+      "BattlePad": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Shape": "Cylinder",
+          "Size": [1, 16, 16],
+          "Position": [0, 0.5, -24],
+          "Orientation": [0, 0, 90],
+          "Material": "Neon",
+          "Color": [0.22, 1, 0.08],
+          "Tags": ["BattlePad"]
+        }
+      },
+      "PodiumSlot1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [4, 6, 4],
+          "Position": [30, 3, -30],
+          "Color": [1, 0.84, 0],
+          "Tags": ["PodiumSlot"]
+        },
+        "$attributes": { "Rank": 1 }
+      },
+      "ZoneGate3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [12, 14, 1],
+          "Position": [-30, 7, -30],
+          "Material": "Neon",
+          "Color": [0.13, 0.89, 0.88],
+          "Tags": ["ZoneGate"]
+        },
+        "$attributes": { "Zone": 3 }
+      }
+    }
+  }
+}

@@ -31,6 +31,28 @@ Cada sistema nuevo se especifica con la plantilla [[feature-spec]] indicando qu�
 3. **Pagos por engagement de Premium / Creator Rewards**: tiempo jugado por usuarios Premium; crece con la retención.
 4. **Anuncios recompensados y suscripciones**: cuando el juego tenga audiencia estable.
 
+## Catálogo de MonOG (del GDD)
+| Tipo | Producto | Precio | Clave en `GameConfig` |
+|---|---|---|---|
+| Developer Product | Poción de Expreso Doble (x3 XP 30 min) | R$ 49 | `Products.ExpressoDoble` |
+| Developer Product | Caja de Inicio (Épico asegurado) | R$ 89 | `Products.StarterBox` |
+| Developer Product | Caja de Asilo x1 / x5 / x10 | R$ 79 / 349 / 699 | `Products.AsylumBox1/5/10` |
+| Game Pass | Enfermero Automático (XP pasiva) | R$ 299 | `GamePasses.AutoTrainer` |
+| Game Pass | Pensión Offline Ampliada (24 h al 100 %) | R$ 399 | `GamePasses.OfflinePension` |
+| Game Pass | VIP Director del Asilo (etiqueta dorada en el chat) | R$ 799 | `GamePasses.VipDirector` |
+| Game Pass | Aura Legendaria «Abuelo Cuántico» | R$ 1200 | `GamePasses.QuantumAura` |
+
+### Cómo activarlos
+1. Publica el juego y abre el Creator Hub → tu experiencia → **Monetization**.
+2. Crea cada Developer Product y Game Pass con el nombre y precio de la tabla.
+3. Copia su Id en `src/shared/Configurations/GameConfig.luau` (sustituye el `Id = 0`).
+4. Los botones de compra aparecen solos en el Edificio de Adopción; con `Id = 0` siguen ocultos.
+
+### Cajas de pago y la ley
+Las cajas aleatorias de Robux solo se muestran si `PolicyService` dice que el jugador puede comprarlas (`ArePaidRandomItemsRestricted = false`); en los países donde están restringidas, el jugador solo ve las cajas de moneda del juego. Las probabilidades se publican siempre antes de abrir.
+
+**Pendiente del GDD:** silla de ruedas con cohetes y zona VIP del pase VIP; aura de vapor de té para el top del servidor.
+
 ## Reglas de diseño
 - Nada de pay-to-win que rompa el bucle de los no pagadores: ellos generan el DAU que atrae a los pagadores.
 - Ofertas en momentos de emoción (subir de nivel, perder por poco, desbloquear región en [[world-building]]).

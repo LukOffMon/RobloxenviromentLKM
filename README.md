@@ -30,6 +30,12 @@ En Studio, pestaña Plugins → Rojo → Connect. Antes de cada commit:
 ```
 El mismo pipeline corre en GitHub Actions y publica el `.rbxl` como artefacto.
 
+## Probar sin el mapa
+```bash
+rojo build playtest.project.json -o MonOG-Playtest.rbxl
+```
+Ábrelo en Studio y pulsa F5: trae el código, un suelo y las piezas etiquetadas (puerta del gacha, banco, arena, podio). Sin publicar, los datos viven en memoria.
+
 ## Flujo de una petición de red
 Cliente → `RemoteSignal` → (1) Auth → (2) Rate Limit → (3) Validación de tipos → (4) Sanity/Distancia → (5) Ejecución.
 Ver [docs/architecture/AntiExploit-protocol.md](docs/architecture/AntiExploit-protocol.md).

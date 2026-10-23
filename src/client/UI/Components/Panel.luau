@@ -45,7 +45,7 @@ function Panel.new(parent: Instance, title: string, accent: Color3): Panel
 		Parent = frame,
 	})
 
-	local close = Theme.button("✕", Theme.Colors.Red, {
+	local close = Theme.button("X", Theme.Colors.Red, {
 		AnchorPoint = Vector2.new(1, 0),
 		Position = UDim2.new(1, -12, 0, 10),
 		Size = UDim2.fromOffset(46, 46),

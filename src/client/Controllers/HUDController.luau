@@ -115,7 +115,7 @@ function HUDController.start()
 			SortOrder = Enum.SortOrder.LayoutOrder,
 		}),
 	})
-	pill(top, "PensionCoins", "🪙", C.Gold, 1)
+	pill(top, "PensionCoins", "💰", C.Gold, 1)
 	pill(top, "GigaGems", "💎", C.Cyan, 2)
 	pill(top, "Tickets", "🎟", C.Pink, 3)
 
@@ -162,6 +162,8 @@ function HUDController.start()
 		Name = "Toasts",
 		AnchorPoint = Vector2.new(0.5, 0),
 		Position = UDim2.new(0.5, 0, 0, 100),
+		-- Por encima de paneles (20) y pantallas completas (50-86).
+		ZIndex = 100,
 		Size = UDim2.fromOffset(460, 200),
 		BackgroundTransparency = 1,
 		Parent = gui,
@@ -221,7 +223,7 @@ function HUDController.render()
 	if rateLabel and profile.PensionRate then
 		local friends = profile.FriendMultiplier or 1
 		rateLabel.Text = string.format(
-			"Pensión: +%s 🪙/s%s",
+			"Pensión: +%s 💰/s%s",
 			Theme.formatNumber(profile.PensionRate),
 			if friends > 1 then string.format("  (👥 x%.2f por amigos)", friends) else ""
 		)
@@ -241,6 +243,7 @@ function HUDController.toast(text: string, kind: string?)
 		Size = UDim2.fromOffset(460, 40),
 		BackgroundTransparency = 0.1,
 		BackgroundColor3 = C.Panel,
+		ZIndex = 100,
 		Parent = holder,
 	})
 	Theme.corner(12).Parent = label

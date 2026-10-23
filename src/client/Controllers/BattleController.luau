@@ -263,7 +263,7 @@ local function play(view: any)
 	if view.Rewards then
 		local rewards = view.Rewards
 		local text =
-			string.format("+%s 🪙   +%d XP a tu equipo", Theme.formatNumber(rewards.PensionCoins), rewards.TeamXp)
+			string.format("+%s 💰   +%d XP a tu equipo", Theme.formatNumber(rewards.PensionCoins), rewards.TeamXp)
 		if rewards.GigaGems > 0 then
 			text ..= string.format("   +%d 💎", rewards.GigaGems)
 		end

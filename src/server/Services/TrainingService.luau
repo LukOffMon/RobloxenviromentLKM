@@ -15,7 +15,8 @@ local OGService = require(script.Parent.OGService)
 
 local CONFIG = GameConfig.Training
 
-export type SessionView = { StartTime: number, Interval: number, Beats: number, Uid: string }
+-- ServerNow permite al cliente medir el compás en relativo aunque su reloj no esté sincronizado.
+export type SessionView = { StartTime: number, ServerNow: number, Interval: number, Beats: number, Uid: string }
 export type ResultView = { Uid: string, Perfect: number, Good: number, Beats: number, Xp: number }
 
 type Active = { Uid: string, Session: TrainingLogic.Session }
@@ -61,7 +62,8 @@ function TrainingService.begin(player: Player, uid: string): (SessionView?, stri
 	if os.clock() - (lastFinished[player] or 0) < CONFIG.CooldownSeconds then
 		return nil, "Tu OG está tomando su té. Espera un momento."
 	end
-	local startTime = workspace:GetServerTimeNow() + CONFIG.LeadInSeconds
+	local serverNow = workspace:GetServerTimeNow()
+	local startTime = serverNow + CONFIG.LeadInSeconds
 	local session = TrainingLogic.newSession(
 		startTime,
 		CONFIG.IntervalSeconds,
@@ -72,7 +74,14 @@ function TrainingService.begin(player: Player, uid: string): (SessionView?, stri
 	local entry = { Uid = uid, Session = session }
 	active[player] = entry
 	task.delay(TrainingLogic.endTime(session) - workspace:GetServerTimeNow() + 0.5, finish, player, entry)
-	return { StartTime = startTime, Interval = CONFIG.IntervalSeconds, Beats = CONFIG.Beats, Uid = uid }, nil
+	return {
+		StartTime = startTime,
+		ServerNow = serverNow,
+		Interval = CONFIG.IntervalSeconds,
+		Beats = CONFIG.Beats,
+		Uid = uid,
+	},
+		nil
 end
 
 -- Devuelve el juicio de la pulsación para el feedback inmediato del cliente.

@@ -1,10 +1,12 @@
 # CLAUDE.md
 
-Juego de Roblox gestionado con Rojo. Meta de negocio: 50 M Robux netos (ver `docs/gdd/monetization-and-growth.md`).
+**MonOG: Pocket Seniors**: juego de Roblox (gacha de abuelos, crianza, combates por turnos) gestionado con Rojo. GDD: `docs/gdd/monog-gdd.md`. Meta de negocio: 50 M Robux netos (ver `docs/gdd/monetization-and-growth.md`).
 Reglas de estilo y arquitectura completas: `AI_SYSTEM_INSTRUCTIONS.md` (sección Repositorio 1).
 
 ## Comandos
-- Verificar todo antes de commit: `./scripts/check.ps1` (formato, Selene, tipos estrictos con luau-lsp, build de Rojo). `-Fix` reformatea.
+- Verificar todo antes de commit: `./scripts/check.ps1` (formato, Selene, tipos estrictos con luau-lsp, tests Lune, build de Rojo). `-Fix` reformatea.
+- Probar sin el mapa: `rojo build playtest.project.json -o MonOG-Playtest.rbxl` y abrirlo en Studio (suelo y piezas etiquetadas de prueba).
+- La lógica de juego va en `src/shared/Logic` sin dependencias de Roblox, con su test en `tests/run.luau`.
 - Sincronizar con Studio: `rojo serve` y pulsar Connect en el plugin de Rojo.
 - Herramientas fijadas en `rokit.toml`; `rokit install` en una máquina nueva. Paquetes: declarar en `wally.toml`, luego `wally install`.
 

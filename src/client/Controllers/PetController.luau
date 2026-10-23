@@ -14,6 +14,8 @@ local Theme = require(script.Parent.Parent.UI.Theme)
 
 type Pet = { Model: Model, Root: BasePart, Offset: Vector3, Phase: number }
 
+-- Tamaño de las mascotas respecto al diseño base (cabeza de 2.4 studs).
+local PET_SCALE = 0.7
 local SLOT_OFFSETS = { Vector3.new(-4, 0, 4), Vector3.new(4, 0, 4), Vector3.new(0, 0, 6.5) }
 
 local PetController = {}
@@ -35,7 +37,7 @@ local function part(
 	local p = Instance.new("Part")
 	p.Name = name
 	p.Shape = shape
-	p.Size = size
+	p.Size = size * PET_SCALE
 	p.Color = color
 	p.Material = material or Enum.Material.SmoothPlastic
 	p.Anchored = true
@@ -43,7 +45,7 @@ local function part(
 	p.CanQuery = false
 	p.CanTouch = false
 	p.CastShadow = false
-	p:SetAttribute("Offset", offset)
+	p:SetAttribute("Offset", CFrame.new(offset.Position * PET_SCALE) * offset.Rotation)
 	p.Parent = model
 	return p
 end

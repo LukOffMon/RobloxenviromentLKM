@@ -43,7 +43,8 @@ end
 -- Escuadrón rival del nivel `tier`: crece en nivel y rareza de forma determinista.
 function BattleService.npcTeam(tier: number): { BattleLogic.FighterInput }
 	local team = {}
-	local size = if tier < 3 then 2 else 3
+	-- El primer rival es 1 contra 1 para que el abuelo inicial pueda ganarlo.
+	local size = math.min(3, 1 + math.floor((tier - 1) / 2))
 	local tierRng = Random.new(tier * 7919)
 	for slot = 1, size do
 		local maxOrder = math.clamp(1 + math.floor((tier - 1) / 4), 1, #OGCatalog.Rarities)

@@ -52,7 +52,12 @@ type StoredRecord = {
 local SCHEMA_VERSION = 1
 local JOB_ID = if RunService:IsStudio() then "studio-" .. game.JobId else game.JobId
 
-local store = DataStoreService:GetDataStore(CONFIG.DataStoreName)
+-- En un place sin publicar GetDataStore lanza error: no debe tumbar el servidor entero.
+local storeOk, storeResult = pcall(DataStoreService.GetDataStore, DataStoreService, CONFIG.DataStoreName)
+local store: DataStore? = if storeOk then storeResult else nil
+if not storeOk then
+	warn("[DataService] DataStore no disponible:", storeResult)
+end
 local profiles: { [Player]: ProfileData } = {}
 -- En Studio sin acceso a API (place sin publicar) el perfil vive solo en memoria y no se guarda.
 local memoryOnly: { [Player]: boolean } = {}
@@ -90,9 +95,13 @@ local function keyFor(player: Player): string
 end
 
 local function updateAsync(key: string, transform: (StoredRecord?) -> StoredRecord?)
+	local activeStore = store
+	if activeStore == nil then
+		return Promise.reject("DataStore no disponible")
+	end
 	return Promise.retry(function()
 		return Promise.new(function(resolve)
-			resolve(store:UpdateAsync(key, transform))
+			resolve(activeStore:UpdateAsync(key, transform))
 		end)
 	end, CONFIG.MaxSaveRetries, 2)
 end

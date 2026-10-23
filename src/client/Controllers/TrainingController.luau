@@ -3,6 +3,7 @@
 -- El compás lo marca el reloj del servidor (workspace:GetServerTimeNow); el servidor juzga cada toque.
 
 local ContextActionService = game:GetService("ContextActionService")
+local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
 
@@ -29,6 +30,8 @@ local title: TextLabel
 local countLabel: TextLabel
 local tapButton: TextButton
 local session: any = nil
+-- Instante local (os.clock) en que suena el primer beat.
+local localStart = 0
 local notes: { [number]: TextLabel? } = {}
 local stepConnection: RBXScriptConnection? = nil
 local lastClickBeat = 0
@@ -69,15 +72,15 @@ local function onStep()
 	if session == nil then
 		return
 	end
-	local now = workspace:GetServerTimeNow()
+	local now = os.clock()
 	local width = lane.AbsoluteSize.X
 	for index = 1, session.Beats do
-		local beatTime = session.StartTime + (index - 1) * session.Interval
+		local beatTime = localStart + (index - 1) * session.Interval
 		local remaining = beatTime - now
 		local note = notes[index]
 		if remaining <= TRAVEL_SECONDS and remaining > -0.3 then
 			local shown: TextLabel = note
-				or Theme.label("🩴", 38, C.White, {
+				or Theme.label("👡", 38, C.White, {
 					AnchorPoint = Vector2.new(0.5, 0.5),
 					Size = UDim2.fromOffset(48, 48),
 					ZIndex = 43,
@@ -97,7 +100,7 @@ local function onStep()
 			Sounds.play("Click", 1.4)
 		end
 	end
-	local untilStart = session.StartTime - now
+	local untilStart = localStart - now
 	countLabel.Text = if untilStart > 0 then string.format("¡Prepárate! %d", math.ceil(untilStart)) else ""
 end
 
@@ -164,14 +167,14 @@ end
 local function popJudgement(text: string, color: Color3)
 	local label = Theme.label(text, 34, color, {
 		AnchorPoint = Vector2.new(0.5, 0.5),
-		Position = UDim2.new(0.12, 0, 0, -10),
+		Position = UDim2.new(0.3, 0, 0, 58),
 		Size = UDim2.fromOffset(220, 40),
-		ZIndex = 44,
-		Parent = lane,
+		ZIndex = 60,
+		Parent = overlay,
 	})
 	Theme.squish(label, 0.5)
-	Theme.tween(label, 0.6, { Position = UDim2.new(0.12, 0, 0, -40), TextTransparency = 1 })
-	task.delay(0.6, function()
+	Theme.tween(label, 0.9, { Position = UDim2.new(0.3, 0, 0, 30), TextTransparency = 1 }, Enum.EasingStyle.Quint)
+	task.delay(0.9, function()
 		label:Destroy()
 	end)
 end
@@ -183,6 +186,8 @@ function TrainingController.start(gui: ScreenGui)
 		stop()
 		Panel.closeAll()
 		session = view
+		-- El mensaje tardó ~media latencia en llegar desde que el servidor fijó ServerNow.
+		localStart = os.clock() + (view.StartTime - view.ServerNow) - Players.LocalPlayer:GetNetworkPing() * 0.5
 		lastClickBeat = 0
 		local og = State.Profile and State.Profile.OGs[view.Uid]
 		local archetype = og and OGCatalog.getArchetype(og.Id)

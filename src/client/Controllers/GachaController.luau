@@ -96,8 +96,8 @@ local function buildPanel(gui: ScreenGui)
 		}),
 	})
 	local cfg = GameConfig.Gacha
-	boxCard(boxes, 1, "Caja de Asilo", string.format("%d 🪙", cfg.CoinBoxCost), C.Amber, "Coin")
-	boxCard(boxes, 2, "Caja de Asilo x5", string.format("%d 🪙", cfg.CoinBox5Cost), C.Gold, "Coin5")
+	boxCard(boxes, 1, "Caja de Asilo", string.format("%d 💰", cfg.CoinBoxCost), C.Amber, "Coin")
+	boxCard(boxes, 2, "Caja de Asilo x5", string.format("%d 💰", cfg.CoinBox5Cost), C.Gold, "Coin5")
 	boxCard(boxes, 3, "Caja de Gemas (Raro+)", string.format("%d 💎", cfg.GemBoxCost), C.Cyan, "Gem")
 	boxCard(boxes, 4, "Ticket gratis", "Usar 🎟", C.Lime, "Ticket")
 	boxCard(boxes, 5, "Ticket Épico", "Usar ⭐", Theme.rarityColor("Epic"), "EpicTicket")
