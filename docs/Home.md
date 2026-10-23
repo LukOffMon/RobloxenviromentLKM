@@ -18,6 +18,7 @@ Punto de entrada de la documentación. Abre esta carpeta (`docs/`) como bóveda 
 
 ## Mundo
 - [[world-building]] · [[npcs-and-quests]]
+- [[isla-origen]] — zona tutorial (niveles 1–3): recorrido, monedas e instancias
 
 ## Versiones
 - [[v1.0.0-alpha]]

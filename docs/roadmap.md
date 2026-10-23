@@ -15,10 +15,11 @@ kanban-plugin: board
 
 ## En desarrollo
 
-- [ ] Mapa de Isla Origen ([[world-building]])
+- [ ] Recoger monedas al tocarlas (cliente → `CollectCoin`) y reaparición ([[isla-origen]])
 
 ## Probando
 
+- [ ] Mapa de Isla Origen ([[isla-origen]])
 
 ## Publicado
 

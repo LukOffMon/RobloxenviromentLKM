@@ -8,6 +8,6 @@ Un archipiélago flotante donde las monedas son fragmentos de energía que manti
 ## Regiones
 | Región | Nivel sugerido | Rasgo |
 |---|---|---|
-| Isla Origen | 1–3 | Tutorial, monedas abundantes |
+| [[isla-origen\|Isla Origen]] | 1–3 | Tutorial, monedas abundantes |
 | Arrecife Celeste | 4–8 | Plataformas móviles |
 | Núcleo | 9+ | Monedas de alto `Value` |
