@@ -1,5 +1,6 @@
 --!strict
--- Ambiente "Toon-Cyber" de noche: niebla violeta, bloom para el neón, colores saturados y estrellas.
+-- Ambiente de día "cartoon brillante" (inspirado en Pet Simulator): cielo azul, sol suave,
+-- colores saturados y un poco de bloom para los acentos de neón.
 -- Se aplica en el cliente al entrar, así el look es el mismo en cualquier mapa (docs/gdd/art-direction.md).
 -- También ofrece destellos de color y "golpes" de cámara para los momentos épicos.
 
@@ -9,21 +10,22 @@ local TweenService = game:GetService("TweenService")
 local AtmosphereController = {}
 
 local LIGHTING = {
-	ClockTime = 23.6,
-	Brightness = 2.2,
-	Ambient = Color3.fromRGB(46, 32, 78),
-	OutdoorAmbient = Color3.fromRGB(86, 62, 130),
-	EnvironmentDiffuseScale = 0.6,
-	EnvironmentSpecularScale = 0.7,
-	ExposureCompensation = 0.25,
+	ClockTime = 14.2,
+	GeographicLatitude = 20,
+	Brightness = 3,
+	Ambient = Color3.fromRGB(120, 120, 135),
+	OutdoorAmbient = Color3.fromRGB(150, 150, 165),
+	EnvironmentDiffuseScale = 1,
+	EnvironmentSpecularScale = 0.6,
+	ExposureCompensation = 0.1,
 	GlobalShadows = true,
-	ShadowSoftness = 0.25,
+	ShadowSoftness = 0.4,
 }
 
 local bloom: BloomEffect? = nil
 local grade: ColorCorrectionEffect? = nil
-local BASE_BLOOM = 0.55
-local BASE_TINT = Color3.fromRGB(255, 244, 255)
+local BASE_BLOOM = 0.35
+local BASE_TINT = Color3.fromRGB(255, 252, 245)
 
 -- Reutiliza el efecto si el mapa ya trae uno con ese nombre; si no, lo crea.
 local function ensure<T>(className: string, name: string): T
@@ -43,30 +45,29 @@ function AtmosphereController.start()
 	end
 
 	local atmosphere = ensure("Atmosphere", "MonOGAtmosphere") :: Atmosphere
-	atmosphere.Density = 0.32
-	atmosphere.Offset = 0.12
-	atmosphere.Color = Color3.fromRGB(122, 84, 190)
-	atmosphere.Decay = Color3.fromRGB(38, 18, 78)
-	atmosphere.Glare = 0.25
-	atmosphere.Haze = 1.4
+	atmosphere.Density = 0.22
+	atmosphere.Offset = 0.05
+	atmosphere.Color = Color3.fromRGB(199, 225, 255)
+	atmosphere.Decay = Color3.fromRGB(110, 160, 230)
+	atmosphere.Glare = 0
+	atmosphere.Haze = 0.6
 
 	local newBloom = ensure("BloomEffect", "MonOGBloom") :: BloomEffect
 	newBloom.Intensity = BASE_BLOOM
-	newBloom.Size = 24
-	newBloom.Threshold = 0.96
+	newBloom.Size = 20
+	newBloom.Threshold = 0.98
 	bloom = newBloom
 
 	local newGrade = ensure("ColorCorrectionEffect", "MonOGGrade") :: ColorCorrectionEffect
-	newGrade.Saturation = 0.28
-	newGrade.Contrast = 0.12
+	newGrade.Saturation = 0.22
+	newGrade.Contrast = 0.06
 	newGrade.Brightness = 0.02
 	newGrade.TintColor = BASE_TINT
 	grade = newGrade
 
 	local sky = ensure("Sky", "MonOGSky") :: Sky
-	sky.StarCount = 6000
 	sky.CelestialBodiesShown = true
-	sky.MoonAngularSize = 18
+	sky.SunAngularSize = 14
 end
 
 -- Destello del color de la rareza: tiñe la pantalla y sube el bloom un instante.

@@ -16,6 +16,8 @@ Leyenda: ✅ hecho · 🟡 parcial · ⏳ pendiente
 ## Bucles de juego
 | Bucle | Diseño | Estado |
 |---|---|---|
+| Farmeo (0–60 s) | Tocar montones de monedas, cofres y cajas fuertes: los OGs equipados los rompen (estilo Pet Simulator) | ✅ [[economy-systems]] |
+| Zonas | Portales con precio: Parque → Playa (2.500) → Ciber-Asilo (30.000) → Galaxia OG (300.000) | ✅ [[world-building]] |
 | Micro (0–30 s) | «Chanclazo Timing»: pulsar al ritmo en el Gimnasio para subir stats | ✅ [[core-gameplay-loop]] |
 | Core (5–15 min) | Escuadrón de 3 OGs → Arena → combate por turnos → PensionCoins | ✅ contra NPC · ⏳ PvP · [[battle-system]] |
 | Meta (días) | Rebirth del asilo: alas temáticas y multiplicadores permanentes | ⏳ [[progression-tree]] |

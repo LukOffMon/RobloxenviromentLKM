@@ -4,6 +4,7 @@
 
 local TweenService = game:GetService("TweenService")
 
+local Assets = require(game:GetService("ReplicatedStorage").Shared.Configurations.Assets)
 local OGCatalog = require(game:GetService("ReplicatedStorage").Shared.Configurations.OGCatalog)
 
 local Theme = {}
@@ -174,6 +175,50 @@ function Theme.button(text: string, color: Color3, props: { [string]: any }?): T
 		Theme.tween(scale, 0.15, { Scale = 1 })
 	end)
 	return button
+end
+
+-- Icono de la UI: imagen subida (Assets.Icons) o, si aún no existe, el emoji de respaldo.
+function Theme.icon(name: string, fallback: string, size: number, color: Color3?, props: { [string]: any }?): GuiObject
+	local id = (Assets.Icons :: any)[name]
+	local object: GuiObject
+	if type(id) == "string" and id ~= "" then
+		object = Theme.create("ImageLabel", {
+			BackgroundTransparency = 1,
+			Image = id,
+			ScaleType = Enum.ScaleType.Fit,
+			Size = UDim2.fromOffset(size, size),
+		})
+	else
+		object = Theme.label(fallback, size, color)
+	end
+	if props then
+		for key, value in props do
+			(object :: any)[key] = value
+		end
+	end
+	return object
+end
+
+-- Retrato de un OG: imagen (Assets.Portraits) o el emoji de OGVisuals.
+function Theme.portrait(archetypeId: string, fallback: string, size: number, props: { [string]: any }?): GuiObject
+	local id = (Assets.Portraits :: any)[archetypeId]
+	local object: GuiObject
+	if type(id) == "string" and id ~= "" then
+		object = Theme.create("ImageLabel", {
+			BackgroundTransparency = 1,
+			Image = id,
+			ScaleType = Enum.ScaleType.Fit,
+			Size = UDim2.fromOffset(size, size),
+		})
+	else
+		object = Theme.label(fallback, size, Theme.Colors.White)
+	end
+	if props then
+		for key, value in props do
+			(object :: any)[key] = value
+		end
+	end
+	return object
 end
 
 function Theme.setEnabled(button: TextButton, enabled: boolean)

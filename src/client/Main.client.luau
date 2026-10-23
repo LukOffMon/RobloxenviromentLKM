@@ -9,6 +9,7 @@ local Sounds = require(script.Parent.UI.Sounds)
 local Controllers = script.Parent.Controllers
 local AtmosphereController = require(Controllers.AtmosphereController)
 local BattleController = require(Controllers.BattleController)
+local BreakableController = require(Controllers.BreakableController)
 local ChatTagController = require(Controllers.ChatTagController)
 local DailyController = require(Controllers.DailyController)
 local GachaController = require(Controllers.GachaController)
@@ -19,6 +20,7 @@ local PetController = require(Controllers.PetController)
 local State = require(Controllers.State)
 local TrainingController = require(Controllers.TrainingController)
 local WorldFXController = require(Controllers.WorldFXController)
+local ZoneController = require(Controllers.ZoneController)
 
 AtmosphereController.start()
 HUDController.start()
@@ -31,6 +33,8 @@ BattleController.start(gui)
 DailyController.start(gui)
 PetController.start()
 WorldFXController.start()
+BreakableController.start()
+ZoneController.start()
 ChatTagController.start()
 
 Net.get("ProfileUpdated"):Connect(function(view: any)
@@ -72,9 +76,19 @@ Net.get("Notify"):Connect(function(text: any, kind: any)
 end)
 
 -- Los ProximityPrompt del mapa (puerta del Asilo, bancos, arena) abren el panel que toca.
-local PROMPT_ACTIONS: { [string]: () -> () } = {
-	Gacha = GachaController.open,
-	Battle = BattleController.open,
+local PROMPT_ACTIONS: { [string]: (prompt: ProximityPrompt) -> () } = {
+	BuyZone = function(prompt)
+		local zone = prompt.Parent and prompt.Parent:GetAttribute("Zone")
+		if type(zone) == "number" then
+			Net.get("BuyZone"):Fire(zone)
+		end
+	end,
+	Gacha = function()
+		GachaController.open()
+	end,
+	Battle = function()
+		BattleController.open()
+	end,
 	Training = function()
 		local profile = State.Profile
 		local uid = profile and profile.Equipped[1]
@@ -90,7 +104,7 @@ ProximityPromptService.PromptTriggered:Connect(function(prompt)
 	local action = prompt:GetAttribute("Action")
 	local callback = if type(action) == "string" then PROMPT_ACTIONS[action] else nil
 	if callback then
-		callback()
+		callback(prompt)
 	end
 end)
 

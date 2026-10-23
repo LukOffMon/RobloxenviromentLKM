@@ -65,10 +65,10 @@ local function card(entry: { Uid: string, OG: any, Order: number, Equipped: bool
 		Parent = grid,
 	}, { Theme.corner(16), Theme.stroke(color, if entry.Equipped then 4 else 2) })
 
-	Theme.label(
+	Theme.portrait(
+		og.Id,
 		visual.Icon,
 		46,
-		C.White,
 		{ Position = UDim2.fromOffset(0, 4), Size = UDim2.new(1, 0, 0, 52), Parent = frame }
 	)
 	if og.Shiny then

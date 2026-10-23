@@ -3,7 +3,7 @@
 -- Contrato de etiquetas en docs/lore/world-building.md:
 --   GachaDoor, TrainingBench, BattlePad -> ProximityPrompt con atributo Action
 --   PodiumSlot (atributo Rank 1..3)      -> top 3 del servidor por nivel de rival
---   ZoneGate (atributo Zone)             -> portal cerrado "Próximamente"
+--   ZoneGate (atributo Zone)             -> portal de pago; se abre por jugador en el cliente
 
 local CollectionService = game:GetService("CollectionService")
 local Players = game:GetService("Players")
@@ -17,8 +17,6 @@ local PROMPTS: { [string]: PromptSpec } = {
 	TrainingBench = { Action = "Training", ActionText = "Entrenar (Chanclazo Timing)", ObjectText = "Gimnasio" },
 	BattlePad = { Action = "Battle", ActionText = "¡Combatir!", ObjectText = "Arena Central" },
 }
-
-local ZONE_NAMES = { [3] = "Ciber-Asilo", [4] = "Galaxia OG" }
 
 local WorldService = {}
 
@@ -37,27 +35,20 @@ local function addPrompt(part: Instance, spec: PromptSpec)
 	prompt.Parent = part
 end
 
-local function addZoneSign(part: Instance)
-	if not part:IsA("BasePart") or part:FindFirstChild("ZoneSign") then
+-- Portal de zona: prompt de compra. El cartel con el precio y la apertura los pinta cada cliente.
+local function addZonePrompt(part: Instance)
+	if not part:IsA("BasePart") or part:FindFirstChild("MonOGPrompt") then
 		return
 	end
-	local zone = part:GetAttribute("Zone")
-	local gui = Instance.new("BillboardGui")
-	gui.Name = "ZoneSign"
-	gui.Size = UDim2.fromOffset(260, 70)
-	gui.StudsOffset = Vector3.new(0, part.Size.Y / 2 + 3, 0)
-	gui.AlwaysOnTop = false
-	gui.MaxDistance = 120
-	local label = Instance.new("TextLabel")
-	label.Size = UDim2.fromScale(1, 1)
-	label.BackgroundTransparency = 1
-	label.Font = Enum.Font.FredokaOne
-	label.TextScaled = true
-	label.TextColor3 = Color3.fromHex("#39FF14")
-	label.TextStrokeTransparency = 0.2
-	label.Text = string.format("🔒 %s\nPróximamente", ZONE_NAMES[zone :: number] or "Zona secreta")
-	label.Parent = gui
-	gui.Parent = part
+	local prompt = Instance.new("ProximityPrompt")
+	prompt.Name = "MonOGPrompt"
+	prompt.ActionText = "Desbloquear zona"
+	prompt.ObjectText = "Portal"
+	prompt.HoldDuration = 0.3
+	prompt.MaxActivationDistance = 16
+	prompt.RequiresLineOfSight = false
+	prompt:SetAttribute("Action", "BuyZone")
+	prompt.Parent = part
 end
 
 local function bindTag(tag: string, callback: (Instance) -> ())
@@ -143,7 +134,7 @@ function WorldService.start()
 			addPrompt(instance, spec)
 		end)
 	end
-	bindTag("ZoneGate", addZoneSign)
+	bindTag("ZoneGate", addZonePrompt)
 
 	Players.PlayerAdded:Connect(setupLeaderstats)
 	for _, player in Players:GetPlayers() do

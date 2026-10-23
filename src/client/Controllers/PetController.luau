@@ -12,7 +12,7 @@ local OGCatalog = require(ReplicatedStorage.Shared.Configurations.OGCatalog)
 local OGVisuals = require(script.Parent.Parent.UI.OGVisuals)
 local Theme = require(script.Parent.Parent.UI.Theme)
 
-type Pet = { Model: Model, Root: BasePart, Offset: Vector3, Phase: number }
+type Pet = { Model: Model, Root: BasePart, Parts: { BasePart }, Offset: Vector3, Phase: number }
 
 -- Tamaño de las mascotas respecto al diseño base (cabeza de 2.4 studs).
 local PET_SCALE = 0.7
@@ -50,8 +50,47 @@ local function part(
 	return p
 end
 
+-- Modelo 3D real si existe en ReplicatedStorage/MonOGAssets/OGs/<Id>; si no, el chibi de primitivas.
+local function fromAsset(archetypeId: string, shiny: boolean): (Model?, BasePart?)
+	local assets = ReplicatedStorage:FindFirstChild("MonOGAssets")
+	local group = assets and assets:FindFirstChild("OGs")
+	local template = group and group:FindFirstChild(archetypeId)
+	if template == nil or not template:IsA("Model") or template.PrimaryPart == nil then
+		return nil, nil
+	end
+	local model = template:Clone()
+	local primary = model.PrimaryPart :: BasePart
+	local pivot = model:GetPivot()
+	local _, size = model:GetBoundingBox()
+	-- Normaliza la altura a ~3 studs para que todos los OGs midan parecido.
+	local scale = 3 / math.max(size.Y, 0.1)
+	model:ScaleTo(model:GetScale() * scale)
+	for _, descendant in model:GetDescendants() do
+		if descendant:IsA("BasePart") then
+			descendant.Anchored = true
+			descendant.CanCollide = false
+			descendant.CanQuery = false
+			descendant.CanTouch = false
+			descendant.CastShadow = false
+			-- Mismo contrato que el chibi: Offset relativo a la raíz, en el espacio sin escalar.
+			local offset = primary.CFrame:ToObjectSpace(descendant.CFrame)
+			descendant:SetAttribute("Offset", offset)
+			if shiny and descendant ~= primary then
+				descendant.Material = Enum.Material.Foil
+				descendant.Color = descendant.Color:Lerp(Color3.fromHex("#FFD700"), 0.6)
+			end
+		end
+	end
+	model:PivotTo(pivot)
+	return model, primary
+end
+
 -- Construye un abuelo chibi con primitivas: cabeza grande, cuerpo compacto y accesorios.
 local function buildChibi(archetypeId: string, shiny: boolean): (Model, BasePart)
+	local assetModel, assetRoot = fromAsset(archetypeId, shiny)
+	if assetModel and assetRoot then
+		return assetModel, assetRoot
+	end
 	local visual = OGVisuals.get(archetypeId)
 	local archetype = OGCatalog.getArchetype(archetypeId)
 	local rarityColor = Theme.rarityColor(if archetype then archetype.Rarity else "Common")
@@ -290,7 +329,19 @@ local function rebuild(player: Player)
 			slot += 1
 			local model, root = buildChibi(id, shinyFlag == "1")
 			model.Parent = folder
-			table.insert(pets, { Model = model, Root = root, Offset = SLOT_OFFSETS[slot], Phase = slot * 1.3 })
+			local parts = {}
+			for _, descendant in model:GetDescendants() do
+				if descendant:IsA("BasePart") then
+					table.insert(parts, descendant)
+				end
+			end
+			table.insert(pets, {
+				Model = model,
+				Root = root,
+				Parts = parts,
+				Offset = SLOT_OFFSETS[slot],
+				Phase = slot * 1.3,
+			})
 		end
 	end
 	petsByPlayer[player] = pets
@@ -352,22 +403,44 @@ local function step()
 		end
 		local base = hrp.CFrame
 		local rainbow = Color3.fromHSV((now * 0.25) % 1, 0.9, 1)
-		for _, pet in pets do
+		-- Modo ataque: si el jugador tocó un rompible, sus OGs lo rodean y lo golpean.
+		local targetName = player:GetAttribute("Target")
+		local breakables = workspace:FindFirstChild("MonOGBreakables")
+		local attackPart = if type(targetName) == "string"
+				and targetName ~= ""
+				and breakables
+			then breakables:FindFirstChild(targetName) :: BasePart?
+			else nil
+		for index, pet in pets do
 			-- Saltitos con squish & stretch: se aplasta al tocar el suelo y se estira en el aire.
-			local wave = math.abs(math.sin(now * 5 + pet.Phase))
-			local hop = wave * 0.9
+			local speed = if attackPart then 11 else 5
+			local wave = math.abs(math.sin(now * speed + pet.Phase))
+			local hop = wave * (if attackPart then 1.6 else 0.9)
 			local squash = 1 - 0.2 * (1 - math.min(wave / 0.3, 1)) + 0.06 * wave
 			local widen = 1 + (1 - squash) * 0.6
-			local target = base * CFrame.new(pet.Offset) * CFrame.new(0, -1.6 + hop, 0)
-			local look = CFrame.lookAt(target.Position, target.Position + base.LookVector)
+			local look: CFrame
+			if attackPart then
+				local center = attackPart.Position
+				local angle = (index / #pets) * math.pi * 2 + now * 0.6
+				local radius = math.max(attackPart.Size.X, attackPart.Size.Z) / 2 + 2.2
+				local spot = Vector3.new(
+					center.X + math.cos(angle) * radius,
+					hrp.Position.Y - 1.6 + hop,
+					center.Z + math.sin(angle) * radius
+				)
+				look = CFrame.lookAt(spot, Vector3.new(center.X, spot.Y, center.Z))
+			else
+				local target = base * CFrame.new(pet.Offset) * CFrame.new(0, -1.6 + hop, 0)
+				look = CFrame.lookAt(target.Position, target.Position + base.LookVector)
+			end
 			local current = pet.Root.CFrame
 			local goal = current:Lerp(look, 0.15)
 			if (current.Position - look.Position).Magnitude > 40 then
 				goal = look
 			end
 			local isRainbow = pet.Model:GetAttribute("Rainbow") == true
-			for _, child in pet.Model:GetChildren() do
-				if child:IsA("BasePart") then
+			for _, child in pet.Parts do
+				do
 					local offset = child:GetAttribute("Offset")
 					if typeof(offset) == "CFrame" then
 						local p = offset.Position

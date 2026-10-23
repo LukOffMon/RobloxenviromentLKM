@@ -32,7 +32,7 @@ local function pill(parent: Instance, key: string, icon: string, color: Color3, 
 		LayoutOrder = order,
 		Parent = parent,
 	}, { Theme.corner(22), Theme.stroke(color, 3) })
-	local iconLabel = Theme.label(icon, 26, color, {
+	local iconLabel = Theme.icon(key, icon, 26, color, {
 		Size = UDim2.fromOffset(40, 44),
 		Position = UDim2.fromOffset(4, 0),
 		Parent = frame,

@@ -15,6 +15,20 @@ Relacionado: [[monog-gdd]], [[core-gameplay-loop]], [[datastore-profile-schema]]
 - × multiplicador social: +15 % por amigo conectado en el servidor, máximo +75 %.
 - Offline: hasta 2 h al 50 %; con el pase «Pensión Offline Ampliada», 24 h al 100 %.
 
+## Rompibles (núcleo estilo Pet Simulator)
+Aparecen en los marcadores `BreakableSpawn` de cada zona (hasta 18 por zona, reaparecen cada 2 s). Tocar uno manda a los OGs equipados a atacarlo; al romperlo siguen con el más cercano.
+
+| Tipo | Vida | Monedas | Peso | Gemas |
+|---|---|---|---|---|
+| Montón de monedas | 40 | 12 | 70 % | — |
+| Cofre de la abuela | 260 | 90 | 24 % | 5 % de 2 💎 |
+| Caja fuerte de pensiones | 1800 | 700 | 6 % | 50 % de 10 💎 |
+
+Vida y monedas × multiplicador de zona (1, 6, 40, 250). Daño por segundo = suma del ATK de los OGs equipados. Si ayudan varios jugadores, el premio se reparte según el daño de cada uno.
+
+## Zonas
+Se compran en orden en su portal: Playa de los Jubilados 2.500 💰, Ciber-Asilo 30.000 💰, Galaxia OG 300.000 💰. Solo se puede atacar en zonas desbloqueadas.
+
 ## Caramelos de abuela (exploración)
 Hasta 30 caramelos de neón aparecen en los marcadores `CandySpawn` del mapa y reaparecen cada 4 s. Al tocarlos: 8–20 💰 × (1 + 0,15 por nivel de rival superado), 2 % de un ticket o 1 % de 5 💎. El servidor valida la distancia y los quita antes de pagar.
 

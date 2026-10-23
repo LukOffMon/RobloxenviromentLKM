@@ -10,6 +10,7 @@ local RemoteSignal = require(ReplicatedStorage.Shared.Network.RemoteSignal)
 
 local Services = script.Parent.Services
 local BattleService = require(Services.BattleService)
+local BreakableService = require(Services.BreakableService)
 local CandyService = require(Services.CandyService)
 local DailyService = require(Services.DailyService)
 local DataService = require(Services.DataService)
@@ -20,6 +21,7 @@ local PensionService = require(Services.PensionService)
 local SanityChecker = require(script.Parent.AntiExploit.SanityChecker)
 local TrainingService = require(Services.TrainingService)
 local WorldService = require(Services.WorldService)
+local ZoneService = require(Services.ZoneService)
 
 local V = RemoteSignal.Validators
 
@@ -40,6 +42,7 @@ local battleResult = outgoing("BattleResult")
 local dailyResult = outgoing("DailyResult")
 local notify = outgoing("Notify")
 local candyCollected = outgoing("CandyCollected")
+local breakableBroken = outgoing("BreakableBroken")
 
 -- Cliente -> servidor ------------------------------------------------------------
 -- El cliente solo expresa intención; el servidor decide coste, resultado y recompensa.
@@ -85,6 +88,13 @@ local claimDaily = RemoteSignal.server({
 	RateWindowSeconds = 2,
 })
 
+local buyZone = RemoteSignal.server({
+	Name = "BuyZone",
+	Args = { V.integer(2, #GameConfig.Zones) },
+	RateLimit = 2,
+	RateWindowSeconds = 1,
+})
+
 local requestProfile = RemoteSignal.server({
 	Name = "RequestProfile",
 	Args = {},
@@ -123,6 +133,7 @@ local function fullView(player: Player, profile: DataService.ProfileData)
 		Passes = MonetizationService.getPasses(player),
 		PaidRandomAllowed = MonetizationService.canBuyRandomItems(player),
 		MemoryOnly = DataService.isMemoryOnly(player),
+		UnlockedZone = profile.UnlockedZone,
 	}
 end
 
@@ -172,6 +183,7 @@ TrainingService.start()
 BattleService.start()
 WorldService.start()
 CandyService.start()
+BreakableService.start()
 
 DataService.ProfileLoaded:Connect(function(player: Player)
 	queuePush(player, "Full")
@@ -213,6 +225,10 @@ end)
 
 MonetizationService.BoxGranted:Connect(function(player: Player, results)
 	gachaResult:FireClient(player, results)
+end)
+
+BreakableService.Broken:Connect(function(player: Player, view)
+	breakableBroken:FireClient(player, view)
 end)
 
 CandyService.Collected:Connect(function(player: Player, reward, position: Vector3)
@@ -273,6 +289,15 @@ claimDaily:Connect(function(player)
 		dailyResult:FireClient(player, day, reward)
 	else
 		notify:FireClient(player, "Ya jugaste el bingo de hoy. ¡Vuelve mañana!", "Error")
+	end
+end)
+
+buyZone:Connect(function(player, zone)
+	local ok, reason = ZoneService.buy(player, zone)
+	if ok then
+		notify:FireClient(player, "¡Zona desbloqueada: " .. GameConfig.Zones[zone].Name .. "! 🎉", "Reward")
+	else
+		notify:FireClient(player, reason, "Error")
 	end
 end)
 

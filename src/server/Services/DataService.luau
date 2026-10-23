@@ -38,6 +38,7 @@ export type ProfileData = {
 	XpBoostUntil: number,
 	ProcessedReceipts: { [string]: number },
 	StarterPackBought: boolean,
+	UnlockedZone: number,
 }
 
 export type Currency = "PensionCoins" | "GigaGems" | "Tickets" | "EpicTickets"

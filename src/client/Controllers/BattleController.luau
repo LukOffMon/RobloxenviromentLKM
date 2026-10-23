@@ -41,7 +41,7 @@ local function makeCard(parent: Frame, fighter: any, index: number, count: numbe
 		ZIndex = 72,
 		Parent = parent,
 	}, { Theme.corner(16), Theme.stroke(color, 4) })
-	Theme.label(OGVisuals.get(fighter.ArchetypeId).Icon, 54, C.White, {
+	Theme.portrait(fighter.ArchetypeId, OGVisuals.get(fighter.ArchetypeId).Icon, 54, {
 		Position = UDim2.fromOffset(0, 6),
 		Size = UDim2.new(1, 0, 0, 60),
 		ZIndex = 73,

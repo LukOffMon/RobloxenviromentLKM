@@ -429,10 +429,10 @@ local function playOne(result: any, fast: boolean)
 		ZIndex = 55,
 		Parent = overlay,
 	}, { Theme.corner(24), Theme.stroke(color, 5) })
-	Theme.label(
+	Theme.portrait(
+		archetype.Id,
 		visual.Icon,
 		110,
-		C.White,
 		{ Position = UDim2.fromOffset(0, 10), Size = UDim2.new(1, 0, 0, 120), ZIndex = 56, Parent = card }
 	)
 	Theme.label(

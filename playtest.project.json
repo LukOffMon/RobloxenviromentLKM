@@ -26,13 +26,8 @@
     "Lighting": {
       "$className": "Lighting",
       "$properties": {
-        "ClockTime": 0,
-        "Brightness": 2,
-        "Ambient": [
-          0.35,
-          0.3,
-          0.5
-        ]
+        "ClockTime": 14,
+        "Brightness": 3
       }
     },
     "Workspace": {
@@ -46,17 +41,38 @@
             2,
             256
           ],
-          "Position": [
-            0,
-            -1,
-            0
-          ],
           "Color": [
-            0.1,
-            0.04,
-            0.2
+            0.36,
+            0.78,
+            0.31
           ],
-          "Material": "SmoothPlastic"
+          "Material": "Grass",
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                0,
+                -1,
+                0
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "SpawnLocation": {
@@ -69,11 +85,32 @@
             1,
             8
           ],
-          "Position": [
-            0,
-            0.5,
-            20
-          ]
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                0,
+                0.5,
+                20
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "AdoptionDoor": {
@@ -85,11 +122,6 @@
             12,
             1
           ],
-          "Position": [
-            -20,
-            6,
-            0
-          ],
           "Color": [
             0.43,
             0.24,
@@ -97,7 +129,33 @@
           ],
           "Tags": [
             "GachaDoor"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -20,
+                6,
+                0
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "TrainingBench": {
@@ -109,11 +167,6 @@
             1,
             2
           ],
-          "Position": [
-            20,
-            1,
-            0
-          ],
           "Color": [
             0.55,
             0.35,
@@ -121,7 +174,33 @@
           ],
           "Tags": [
             "TrainingBench"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                20,
+                1,
+                0
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "BattlePad": {
@@ -134,16 +213,6 @@
             16,
             16
           ],
-          "Position": [
-            0,
-            0.5,
-            -24
-          ],
-          "Orientation": [
-            0,
-            0,
-            90
-          ],
           "Material": "Neon",
           "Color": [
             0.22,
@@ -152,7 +221,33 @@
           ],
           "Tags": [
             "BattlePad"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                0,
+                0.5,
+                -24
+              ],
+              "orientation": [
+                [
+                  6.123233995736766e-17,
+                  -1.0,
+                  0
+                ],
+                [
+                  1.0,
+                  6.123233995736766e-17,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "PodiumSlot1": {
@@ -164,11 +259,6 @@
             6,
             4
           ],
-          "Position": [
-            30,
-            3,
-            -30
-          ],
           "Color": [
             1,
             0.84,
@@ -176,38 +266,36 @@
           ],
           "Tags": [
             "PodiumSlot"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                30,
+                3,
+                -30
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         },
         "$attributes": {
           "Rank": 1
-        }
-      },
-      "ZoneGate3": {
-        "$className": "Part",
-        "$properties": {
-          "Anchored": true,
-          "Size": [
-            12,
-            14,
-            1
-          ],
-          "Position": [
-            -30,
-            7,
-            -30
-          ],
-          "Material": "Neon",
-          "Color": [
-            0.13,
-            0.89,
-            0.88
-          ],
-          "Tags": [
-            "ZoneGate"
-          ]
-        },
-        "$attributes": {
-          "Zone": 3
         }
       },
       "FX_SpinSign": {
@@ -219,11 +307,6 @@
             3,
             1
           ],
-          "Position": [
-            -20,
-            16,
-            0
-          ],
           "Material": "Neon",
           "Color": [
             1,
@@ -234,7 +317,33 @@
           "Tags": [
             "Spin",
             "NeonPulse"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -20,
+                16,
+                0
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         },
         "$attributes": {
           "SpinSpeed": 60
@@ -250,17 +359,38 @@
             4,
             4
           ],
-          "Position": [
-            0,
-            10,
-            -24
-          ],
           "Material": "Neon",
           "CanCollide": false,
           "Tags": [
             "Bob",
             "RainbowCycle"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                0,
+                10,
+                -24
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         },
         "$attributes": {
           "BobHeight": 1.5
@@ -276,11 +406,6 @@
             0.8,
             0.8
           ],
-          "Position": [
-            -23,
-            13,
-            -0.8
-          ],
           "Material": "Neon",
           "Color": [
             1,
@@ -290,7 +415,33 @@
           "CanCollide": false,
           "Tags": [
             "Blink"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -23,
+                13,
+                -0.8
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         },
         "$attributes": {
           "BlinkIndex": 1
@@ -306,11 +457,6 @@
             0.8,
             0.8
           ],
-          "Position": [
-            -22,
-            13,
-            -0.8
-          ],
           "Material": "Neon",
           "Color": [
             1,
@@ -320,7 +466,33 @@
           "CanCollide": false,
           "Tags": [
             "Blink"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -22,
+                13,
+                -0.8
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         },
         "$attributes": {
           "BlinkIndex": 2
@@ -336,11 +508,6 @@
             0.8,
             0.8
           ],
-          "Position": [
-            -21,
-            13,
-            -0.8
-          ],
           "Material": "Neon",
           "Color": [
             1,
@@ -350,7 +517,33 @@
           "CanCollide": false,
           "Tags": [
             "Blink"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -21,
+                13,
+                -0.8
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         },
         "$attributes": {
           "BlinkIndex": 3
@@ -366,11 +559,6 @@
             0.8,
             0.8
           ],
-          "Position": [
-            -20,
-            13,
-            -0.8
-          ],
           "Material": "Neon",
           "Color": [
             1,
@@ -380,7 +568,33 @@
           "CanCollide": false,
           "Tags": [
             "Blink"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -20,
+                13,
+                -0.8
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         },
         "$attributes": {
           "BlinkIndex": 4
@@ -396,11 +610,6 @@
             0.8,
             0.8
           ],
-          "Position": [
-            -19,
-            13,
-            -0.8
-          ],
           "Material": "Neon",
           "Color": [
             1,
@@ -410,7 +619,33 @@
           "CanCollide": false,
           "Tags": [
             "Blink"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -19,
+                13,
+                -0.8
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         },
         "$attributes": {
           "BlinkIndex": 5
@@ -426,11 +661,6 @@
             0.8,
             0.8
           ],
-          "Position": [
-            -18,
-            13,
-            -0.8
-          ],
           "Material": "Neon",
           "Color": [
             1,
@@ -440,7 +670,33 @@
           "CanCollide": false,
           "Tags": [
             "Blink"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -18,
+                13,
+                -0.8
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         },
         "$attributes": {
           "BlinkIndex": 6
@@ -456,11 +712,6 @@
             0.8,
             0.8
           ],
-          "Position": [
-            -17,
-            13,
-            -0.8
-          ],
           "Material": "Neon",
           "Color": [
             1,
@@ -470,7 +721,33 @@
           "CanCollide": false,
           "Tags": [
             "Blink"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -17,
+                13,
+                -0.8
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         },
         "$attributes": {
           "BlinkIndex": 7
@@ -486,11 +763,6 @@
             0.8,
             0.8
           ],
-          "Position": [
-            -16,
-            13,
-            -0.8
-          ],
           "Material": "Neon",
           "Color": [
             1,
@@ -500,7 +772,33 @@
           "CanCollide": false,
           "Tags": [
             "Blink"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -16,
+                13,
+                -0.8
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         },
         "$attributes": {
           "BlinkIndex": 8
@@ -515,16 +813,37 @@
             8,
             1.5
           ],
-          "Position": [
-            30,
-            4,
-            15
-          ],
           "Color": [
             0.45,
             0.3,
             0.18
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                30,
+                4,
+                15
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "FX_TreeTop": {
@@ -537,11 +856,6 @@
             9,
             9
           ],
-          "Position": [
-            30,
-            10,
-            15
-          ],
           "Color": [
             0.2,
             0.75,
@@ -550,7 +864,33 @@
           "CanCollide": false,
           "Tags": [
             "Sway"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                30,
+                10,
+                15
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "FX_RobotPigeon": {
@@ -562,11 +902,6 @@
             1,
             1.8
           ],
-          "Position": [
-            10,
-            0.5,
-            10
-          ],
           "Material": "Metal",
           "Color": [
             0.6,
@@ -576,7 +911,33 @@
           "CanCollide": false,
           "Tags": [
             "Walker"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                10,
+                0.5,
+                10
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         },
         "$attributes": {
           "WanderRadius": 8
@@ -591,16 +952,37 @@
             1,
             1
           ],
-          "Position": [
-            8,
-            0.5,
-            30
-          ],
           "Transparency": 1,
           "CanCollide": false,
           "Tags": [
             "CandySpawn"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                8,
+                0.5,
+                30
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "CandySpawn2": {
@@ -612,16 +994,37 @@
             1,
             1
           ],
-          "Position": [
-            -8,
-            0.5,
-            30
-          ],
           "Transparency": 1,
           "CanCollide": false,
           "Tags": [
             "CandySpawn"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -8,
+                0.5,
+                30
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "CandySpawn3": {
@@ -633,16 +1036,37 @@
             1,
             1
           ],
-          "Position": [
-            15,
-            0.5,
-            0
-          ],
           "Transparency": 1,
           "CanCollide": false,
           "Tags": [
             "CandySpawn"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                15,
+                0.5,
+                0
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "CandySpawn4": {
@@ -654,16 +1078,37 @@
             1,
             1
           ],
-          "Position": [
-            -10,
-            0.5,
-            -10
-          ],
           "Transparency": 1,
           "CanCollide": false,
           "Tags": [
             "CandySpawn"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -10,
+                0.5,
+                -10
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "CandySpawn5": {
@@ -675,16 +1120,37 @@
             1,
             1
           ],
-          "Position": [
-            25,
-            0.5,
-            -20
-          ],
           "Transparency": 1,
           "CanCollide": false,
           "Tags": [
             "CandySpawn"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                25,
+                0.5,
+                -20
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "CandySpawn6": {
@@ -696,16 +1162,37 @@
             1,
             1
           ],
-          "Position": [
-            -25,
-            0.5,
-            20
-          ],
           "Transparency": 1,
           "CanCollide": false,
           "Tags": [
             "CandySpawn"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -25,
+                0.5,
+                20
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "CandySpawn7": {
@@ -717,16 +1204,37 @@
             1,
             1
           ],
-          "Position": [
-            0,
-            0.5,
-            40
-          ],
           "Transparency": 1,
           "CanCollide": false,
           "Tags": [
             "CandySpawn"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                0,
+                0.5,
+                40
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "CandySpawn8": {
@@ -738,16 +1246,37 @@
             1,
             1
           ],
-          "Position": [
-            35,
-            0.5,
-            5
-          ],
           "Transparency": 1,
           "CanCollide": false,
           "Tags": [
             "CandySpawn"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                35,
+                0.5,
+                5
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "CandySpawn9": {
@@ -759,16 +1288,37 @@
             1,
             1
           ],
-          "Position": [
-            -35,
-            0.5,
-            -5
-          ],
           "Transparency": 1,
           "CanCollide": false,
           "Tags": [
             "CandySpawn"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -35,
+                0.5,
+                -5
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
         }
       },
       "CandySpawn10": {
@@ -780,16 +1330,807 @@
             1,
             1
           ],
-          "Position": [
-            12,
-            0.5,
-            -35
-          ],
           "Transparency": 1,
           "CanCollide": false,
           "Tags": [
             "CandySpawn"
-          ]
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                12,
+                0.5,
+                -35
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        }
+      },
+      "ZoneGate2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            40,
+            14,
+            1
+          ],
+          "Material": "SmoothPlastic",
+          "Color": [
+            0.13,
+            0.75,
+            0.95
+          ],
+          "Tags": [
+            "ZoneGate"
+          ],
+          "Transparency": 0.4,
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                0,
+                7,
+                -60
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 2
+        }
+      },
+      "BreakableSpawn1_1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -12,
+                0.5,
+                8
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 1
+        }
+      },
+      "BreakableSpawn1_2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                12,
+                0.5,
+                8
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 1
+        }
+      },
+      "BreakableSpawn1_3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -18,
+                0.5,
+                -8
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 1
+        }
+      },
+      "BreakableSpawn1_4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                18,
+                0.5,
+                -10
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 1
+        }
+      },
+      "BreakableSpawn1_5": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -6,
+                0.5,
+                -16
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 1
+        }
+      },
+      "BreakableSpawn1_6": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                8,
+                0.5,
+                -18
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 1
+        }
+      },
+      "BreakableSpawn1_7": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                26,
+                0.5,
+                22
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 1
+        }
+      },
+      "BreakableSpawn1_8": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -26,
+                0.5,
+                24
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 1
+        }
+      },
+      "BreakableSpawn1_9": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                0,
+                0.5,
+                34
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 1
+        }
+      },
+      "BreakableSpawn1_10": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -34,
+                0.5,
+                -2
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 1
+        }
+      },
+      "BreakableSpawn1_11": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                34,
+                0.5,
+                0
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 1
+        }
+      },
+      "BreakableSpawn1_12": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                14,
+                0.5,
+                40
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 1
+        }
+      },
+      "BreakableSpawn2_1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                -15,
+                0.5,
+                -80
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 2
+        }
+      },
+      "BreakableSpawn2_2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                0,
+                0.5,
+                -90
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 2
+        }
+      },
+      "BreakableSpawn2_3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                15,
+                0.5,
+                -80
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 2
+        }
+      },
+      "BreakableSpawn2_4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "CanCollide": false,
+          "Transparency": 1,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Tags": [
+            "BreakableSpawn"
+          ],
+          "CFrame": {
+            "CFrame": {
+              "position": [
+                0,
+                0.5,
+                -72
+              ],
+              "orientation": [
+                [
+                  1.0,
+                  -0.0,
+                  0
+                ],
+                [
+                  0.0,
+                  1.0,
+                  0
+                ],
+                [
+                  0,
+                  0,
+                  1
+                ]
+              ]
+            }
+          }
+        },
+        "$attributes": {
+          "Zone": 2
         }
       }
     }

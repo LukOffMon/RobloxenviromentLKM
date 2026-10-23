@@ -2,6 +2,7 @@
 -- Tests de la lógica pura de MonOG. Ejecutar: lune run tests/run.luau
 
 local BattleLogic = require("../src/shared/Logic/BattleLogic")
+local BreakableLogic = require("../src/shared/Logic/BreakableLogic")
 local CandyLogic = require("../src/shared/Logic/CandyLogic")
 local DailyLogic = require("../src/shared/Logic/DailyLogic")
 local GachaLogic = require("../src/shared/Logic/GachaLogic")
@@ -246,6 +247,41 @@ test("ticket y gemas nunca salen a la vez y respetan su probabilidad", function(
 	end
 	expect(math.abs(tickets / n - 0.02) < 0.003, "tickets " .. tickets / n)
 	expect(math.abs(gems / n - 0.01) < 0.002, "gemas " .. gems / n)
+end)
+
+print("Rompibles")
+local TYPES: { BreakableLogic.BreakableType } = {
+	{ Id = "Coins", Name = "Montón", HP = 40, Coins = 12, Weight = 70, GemChance = 0, Gems = 0 },
+	{ Id = "Chest", Name = "Cofre", HP = 260, Coins = 90, Weight = 24, GemChance = 0.05, Gems = 2 },
+	{ Id = "Vault", Name = "Caja fuerte", HP = 1800, Coins = 700, Weight = 6, GemChance = 0.5, Gems = 10 },
+}
+
+test("los tipos de rompible salen con su peso", function()
+	local rng = seeded(77)
+	local counts: { [string]: number } = {}
+	local n = 100000
+	for _ = 1, n do
+		local kind = BreakableLogic.pickType(TYPES, rng())
+		counts[kind.Id] = (counts[kind.Id] or 0) + 1
+	end
+	expect(math.abs(counts.Coins / n - 0.70) < 0.01, "Coins")
+	expect(math.abs(counts.Chest / n - 0.24) < 0.01, "Chest")
+	expect(math.abs(counts.Vault / n - 0.06) < 0.005, "Vault")
+	expect(BreakableLogic.pickType(TYPES, 0.9999999).Id == "Vault", "roll casi 1")
+end)
+
+test("la zona escala vida y premio; el daño suma el ATK del equipo", function()
+	local hp, coins = BreakableLogic.stats(TYPES[2], 6)
+	expect(hp == 1560 and coins == 540, string.format("%d %d", hp, coins))
+	expect(BreakableLogic.teamDps({ 14, 18, 24 }, 1) == 56, "dps")
+end)
+
+test("el reparto suma el total y premia a quien más daño hizo", function()
+	local shares = BreakableLogic.split(100, { a = 70, b = 25, c = 5 })
+	expect(shares.a + shares.b + shares.c == 100, "suma")
+	expect(shares.a >= 70 and shares.c >= 1, "proporción")
+	local tiny = BreakableLogic.split(3, { a = 99, b = 1 })
+	expect(tiny.b >= 1, "mínimo 1 por ayudante")
 end)
 
 print(string.format("\n%d ok, %d fallidos", passed, failed))

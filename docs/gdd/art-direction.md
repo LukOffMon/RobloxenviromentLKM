@@ -1,4 +1,4 @@
-# Dirección de arte «Toon-Cyber»
+# Dirección de arte «cartoon brillante»
 
 Relacionado: [[monog-gdd]], [[og-catalog]], [[world-building]] · Código: `src/client/UI/Theme.luau`, `src/client/UI/OGVisuals.luau`
 
@@ -12,7 +12,7 @@ Relacionado: [[monog-gdd]], [[og-catalog]], [[world-building]] · Código: `src/
 Brillos de rareza en [[og-catalog]].
 
 ## Ambiente
-`AtmosphereController` fija en el cliente la noche violeta: niebla (Atmosphere), bloom suave para el neón, saturación +0,28 y cielo con 6000 estrellas. Ofrece `flash(color)` (destello de rareza) y `punch()` (golpe de cámara), que usan el gacha, los especiales, los críticos y los K.O.
+`AtmosphereController` fija en el cliente un día soleado al estilo Pet Simulator: cielo azul, neblina clara, bloom muy suave para los acentos de neón y saturación +0,22. (La versión nocturna «Toon-Cyber» se descartó: se veía oscura.) Ofrece `flash(color)` (destello de rareza) y `punch()` (golpe de cámara), que usan el gacha, los especiales, los críticos y los K.O.
 
 ## Interfaz
 - Fuente FredokaOne; botones con contorno oscuro, degradado y efecto *squish & stretch* al pulsar.
@@ -23,6 +23,8 @@ Brillos de rareza en [[og-catalog]].
 
 ## Personajes (chibi-cabezón)
 Cabeza grande y cuerpo compacto, al estilo de las mascotas de Roblox. Por ahora se construyen con piezas básicas en el cliente (`PetController`): piel, pelo, ojos, gafas, bigote o barba y un accesorio (moño, sombrero de charro neón, gorra, cinta, casco). Los Legendarios o mejores emiten partículas; los Shiny llevan traje dorado.
+
+**Assets reales:** si existen `ReplicatedStorage/MonOGAssets/OGs/<Id>` (modelos) o ids en `src/shared/Configurations/Assets.luau` (iconos y retratos), el juego los usa automáticamente en lugar de las primitivas y los emojis.
 
 **Siguiente paso de arte:** sustituir las primitivas por MeshParts modeladas (Blender o `generate_mesh` del MCP de Studio) con el mismo contrato de colores.
 

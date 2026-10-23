@@ -44,6 +44,7 @@ local GameConfig = table.freeze({
 			XpBoostUntil = 0,
 			ProcessedReceipts = table.freeze({}),
 			StarterPackBought = false,
+			UnlockedZone = 1,
 		}),
 	}),
 
@@ -119,6 +120,54 @@ local GameConfig = table.freeze({
 	}),
 
 	Daily = table.freeze(DAILY_REWARDS),
+
+	-- Zonas al estilo Pet Simulator: se desbloquean en orden pagando en el portal.
+	-- Multiplier escala la vida y el premio de los rompibles de la zona.
+	Zones = table.freeze({
+		table.freeze({ Id = 1, Name = "El Parque", Price = 0, Multiplier = 1 }),
+		table.freeze({ Id = 2, Name = "Playa de los Jubilados", Price = 2500, Multiplier = 6 }),
+		table.freeze({ Id = 3, Name = "Ciber-Asilo", Price = 30000, Multiplier = 40 }),
+		table.freeze({ Id = 4, Name = "Galaxia OG", Price = 300000, Multiplier = 250 }),
+	}),
+
+	-- Rompibles: los OGs equipados atacan el que toque el jugador. Daño/s = suma de ATK × DamageScale.
+	Breakables = table.freeze({
+		MaxPerZone = 18,
+		RespawnSeconds = 2,
+		AttackRange = 70,
+		AutoRetargetRange = 30,
+		TickSeconds = 0.25,
+		DamageScale = 1,
+		Types = table.freeze({
+			table.freeze({
+				Id = "Coins",
+				Name = "Montón de monedas",
+				HP = 40,
+				Coins = 12,
+				Weight = 70,
+				GemChance = 0,
+				Gems = 0,
+			}),
+			table.freeze({
+				Id = "Chest",
+				Name = "Cofre de la abuela",
+				HP = 260,
+				Coins = 90,
+				Weight = 24,
+				GemChance = 0.05,
+				Gems = 2,
+			}),
+			table.freeze({
+				Id = "Vault",
+				Name = "Caja fuerte de pensiones",
+				HP = 1800,
+				Coins = 700,
+				Weight = 6,
+				GemChance = 0.5,
+				Gems = 10,
+			}),
+		}),
+	}),
 
 	-- Caramelos de abuela: aparecen en los marcadores CandySpawn del mapa.
 	Candy = table.freeze({

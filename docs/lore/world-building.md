@@ -3,7 +3,7 @@
 Relacionado: [[monog-gdd]], [[art-direction]], [[npcs-and-quests]]
 
 ## Escenario
-Un mundo abierto Toon-Cyber de noche, dividido en 4 áreas de progresión alrededor de una gran plaza central.
+Mundo de día, cartoon y colorido, inspirado en Pet Simulator: zonas en fila separadas por portales de pago. El pueblo inicial (Zona 1) concentra el Edificio de Adopción, la Arena y el podio.
 
 | Zona | Rol | Estado |
 |---|---|---|
@@ -21,7 +21,8 @@ Constructor del mapa: `scripts/studio/build_monog_map.luau` (se ejecuta en Studi
 | `TrainingBench` | Asientos de los bancos del parque | Prompt «Entrenar» |
 | `BattlePad` | Plataforma en el centro de la Arena | Prompt «¡Combatir!» |
 | `PodiumSlot` + atributo `Rank` 1–3 | Pedestales del podio | Nombre y nivel del top 3 del servidor |
-| `ZoneGate` + atributo `Zone` 3–4 | Portales de zonas futuras | Cartel «Próximamente» |
+| `ZoneGate` + atributo `Zone` 2–4 | Pared del portal entre zonas | Cartel con nombre y precio, prompt de compra; se abre solo para quien la pagó |
+| `BreakableSpawn` + atributo `Zone` | Marcadores invisibles, 15–25 por zona | Ahí aparecen montones de monedas, cofres y cajas fuertes |
 
 | `CandySpawn` | Marcadores invisibles por todo el mapa (40–60) | Ahí aparecen los caramelos de abuela ([[economy-systems]]) |
 

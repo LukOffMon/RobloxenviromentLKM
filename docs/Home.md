@@ -25,7 +25,7 @@ Punto de entrada de la documentación. Abre esta carpeta (`docs/`) como bóveda 
 - [[npcs-and-quests]] — rivales y misiones
 
 ## Versiones
-- [[v0.2.0-monog]] · [[v0.1.0-monog]] · [[v1.0.0-alpha]] (prototipo de monedas, reemplazado)
+- [[v0.3.0-monog]] · [[v0.2.0-monog]] · [[v0.1.0-monog]] · [[v1.0.0-alpha]] (prototipo de monedas, reemplazado)
 
 ## Plantillas
 - [[feature-spec]] — úsala para cada sistema nuevo antes de programarlo
