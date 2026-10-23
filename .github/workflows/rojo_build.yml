@@ -27,7 +27,7 @@ jobs:
           "$HOME/.rokit/bin/rokit" install --no-trust-check
 
       - name: Format (StyLua)
-        run: stylua --check src
+        run: stylua --check src tests
 
       - name: Lint (Selene)
         run: selene src
@@ -37,6 +37,9 @@ jobs:
           curl -sSL -o globalTypes.d.luau "https://raw.githubusercontent.com/JohnnyMorganz/luau-lsp/main/scripts/globalTypes.d.luau"
           rojo sourcemap default.project.json -o sourcemap.json
           luau-lsp analyze --sourcemap=sourcemap.json --definitions=globalTypes.d.luau --platform=roblox --settings=.vscode/settings.json src
+
+      - name: Tests (Lune)
+        run: lune run tests/run.luau
 
       - name: Verify Rojo Project
         run: rojo build default.project.json --output RobloxenviromentLKM.rbxl

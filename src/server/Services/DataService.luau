@@ -13,12 +13,34 @@ local Promise = require(Shared.Utilities.Promise)
 
 local CONFIG = GameConfig.Data
 
-export type ProfileData = {
-	Coins: number,
+export type OGData = {
+	Id: string,
 	Level: number,
-	Experience: number,
-	Inventory: { [string]: number },
+	XP: number,
+	Shiny: boolean,
+	Obtained: number,
 }
+
+export type ProfileData = {
+	PensionCoins: number,
+	GigaGems: number,
+	Tickets: number,
+	EpicTickets: number,
+	OGs: { [string]: OGData },
+	Equipped: { string },
+	Pity: number,
+	TotalRolls: number,
+	BattleTier: number,
+	BattlesWon: number,
+	DailyStreak: number,
+	LastDailyDay: number,
+	LastSeen: number,
+	XpBoostUntil: number,
+	ProcessedReceipts: { [string]: number },
+	StarterPackBought: boolean,
+}
+
+export type Currency = "PensionCoins" | "GigaGems" | "Tickets" | "EpicTickets"
 
 type StoredRecord = {
 	Data: ProfileData,
@@ -32,10 +54,15 @@ local JOB_ID = if RunService:IsStudio() then "studio-" .. game.JobId else game.J
 
 local store = DataStoreService:GetDataStore(CONFIG.DataStoreName)
 local profiles: { [Player]: ProfileData } = {}
+-- En Studio sin acceso a API (place sin publicar) el perfil vive solo en memoria y no se guarda.
+local memoryOnly: { [Player]: boolean } = {}
 local loadedSignal = Instance.new("BindableEvent")
+local changedSignal = Instance.new("BindableEvent")
 
 local DataService = {}
 DataService.ProfileLoaded = loadedSignal.Event
+-- Se dispara cuando un servicio modifica el perfil; Main lo usa para avisar al cliente.
+DataService.ProfileChanged = changedSignal.Event
 
 local function deepCopy<T>(value: T): T
 	if type(value) ~= "table" then
@@ -99,9 +126,10 @@ end
 
 local function saveProfile(player: Player, release: boolean)
 	local data = profiles[player]
-	if data == nil then
+	if data == nil or memoryOnly[player] then
 		return Promise.resolve()
 	end
+	data.LastSeen = os.time()
 	local snapshot = deepCopy(data)
 	return updateAsync(keyFor(player), function(record: StoredRecord?)
 		if record and record.LockJobId and record.LockJobId ~= JOB_ID then
@@ -128,9 +156,15 @@ local function onPlayerAdded(player: Player)
 		return
 	end
 	if not ok then
-		warn("[DataService] No se pudo cargar", player.Name, result)
-		player:Kick("No se pudieron cargar tus datos. Vuelve a entrar en unos segundos.")
-		return
+		if RunService:IsStudio() and not string.find(tostring(result), "bloqueado", 1, true) then
+			warn("[DataService] Studio sin acceso a DataStores; perfil temporal en memoria:", result)
+			memoryOnly[player] = true
+			result = reconcile({})
+		else
+			warn("[DataService] No se pudo cargar", player.Name, result)
+			player:Kick("No se pudieron cargar tus datos. Vuelve a entrar en unos segundos.")
+			return
+		end
 	end
 	profiles[player] = result
 	loadedSignal:Fire(player, result)
@@ -142,6 +176,7 @@ local function onPlayerRemoving(player: Player)
 		warn("[DataService] Error al guardar", player.Name, err)
 	end
 	profiles[player] = nil
+	memoryOnly[player] = nil
 end
 
 -- API pública ------------------------------------------------------------------
@@ -149,31 +184,35 @@ function DataService.getProfile(player: Player): ProfileData?
 	return profiles[player]
 end
 
-function DataService.addCoins(player: Player, amount: number): boolean
+-- Guarda ya (sin soltar el bloqueo). Lo usan las compras antes de confirmar el recibo.
+function DataService.saveNow(player: Player)
+	return saveProfile(player, false)
+end
+
+function DataService.isMemoryOnly(player: Player): boolean
+	return memoryOnly[player] == true
+end
+
+-- Suma (o resta) una moneda. Rechaza valores no enteros, saldo negativo y desbordes.
+function DataService.adjust(player: Player, currency: Currency, delta: number): boolean
 	local profile = profiles[player]
-	if profile == nil or amount ~= amount or amount % 1 ~= 0 then
+	if profile == nil or delta ~= delta or delta % 1 ~= 0 then
 		return false
 	end
-	local newValue = profile.Coins + amount
-	if newValue < 0 or newValue > GameConfig.Economy.MaxCoins then
+	local newValue = (profile :: any)[currency] + delta
+	if newValue < 0 or newValue > GameConfig.Economy.MaxCurrency then
 		return false
 	end
-	profile.Coins = newValue
+	(profile :: any)[currency] = newValue
+	changedSignal:Fire(player, "Currency")
 	return true
 end
 
-function DataService.addExperience(player: Player, amount: number): boolean
-	local profile = profiles[player]
-	if profile == nil or amount <= 0 or amount % 1 ~= 0 then
-		return false
+-- Para cambios que no son de moneda (OGs, equipo, rachas): el servicio modifica el perfil y avisa.
+function DataService.markChanged(player: Player)
+	if profiles[player] then
+		changedSignal:Fire(player, "Full")
 	end
-	profile.Experience += amount
-	local perLevel = GameConfig.Economy.ExperiencePerLevel
-	while profile.Experience >= perLevel * profile.Level do
-		profile.Experience -= perLevel * profile.Level
-		profile.Level += 1
-	end
-	return true
 end
 
 function DataService.start()
