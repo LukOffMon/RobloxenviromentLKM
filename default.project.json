@@ -1,0 +1,33 @@
+{
+  "name": "RobloxenviromentLKM",
+  "tree": {
+    "$className": "DataModel",
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "Server": {
+        "$path": "src/server"
+      },
+      "ServerPackages": {
+        "$path": { "optional": "ServerPackages" }
+      }
+    },
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "Shared": {
+        "$path": "src/shared"
+      },
+      "Packages": {
+        "$path": { "optional": "Packages" }
+      }
+    },
+    "StarterPlayer": {
+      "$className": "StarterPlayer",
+      "StarterPlayerScripts": {
+        "$className": "StarterPlayerScripts",
+        "Client": {
+          "$path": "src/client"
+        }
+      }
+    }
+  }
+}

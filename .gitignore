@@ -1,0 +1,28 @@
+# Builds de Rojo
+*.rbxl
+*.rbxlx
+*.rbxm
+*.rbxmx
+!assets/**/*.rbxm
+!assets/**/*.rbxmx
+*.rbxl.lock
+*.rbxlx.lock
+
+# Paquetes de Wally (se regeneran con `wally install`)
+/Packages/
+/ServerPackages/
+/DevPackages/
+
+# Generados por luau-lsp / herramientas
+sourcemap.json
+/.luau-defs/
+
+# Obsidian: estado local de la ventana y caché
+docs/.obsidian/workspace*.json
+docs/.obsidian/cache
+docs/.trash/
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+.claude/settings.local.json

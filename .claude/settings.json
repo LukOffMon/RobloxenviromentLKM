@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rojo build:*)",
+      "Bash(rojo sourcemap:*)",
+      "Bash(selene:*)",
+      "Bash(stylua:*)",
+      "Bash(luau-lsp analyze:*)",
+      "Bash(wally install:*)",
+      "Bash(rokit install:*)",
+      "Bash(rokit list:*)",
+      "PowerShell(./scripts/check.ps1:*)",
+      "PowerShell(rojo build:*)",
+      "PowerShell(rojo sourcemap:*)",
+      "PowerShell(selene:*)",
+      "PowerShell(stylua:*)",
+      "PowerShell(luau-lsp analyze:*)",
+      "PowerShell(wally install:*)"
+    ]
+  }
+}

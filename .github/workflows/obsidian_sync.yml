@@ -1,0 +1,34 @@
+name: Obsidian Vault Link Check
+
+on:
+  push:
+    paths: [ "docs/**" ]
+  pull_request:
+    paths: [ "docs/**" ]
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Validate wikilinks and relative links in /docs
+        run: |
+          python3 - <<'PY'
+          import pathlib, re, sys
+          root = pathlib.Path("docs")
+          notes = {p.stem.lower(): p for p in root.rglob("*.md")}
+          broken = []
+          for note in root.rglob("*.md"):
+              text = note.read_text(encoding="utf-8")
+              for target in re.findall(r"\[\[([^\]|#]+)", text):
+                  if target.strip().lower() not in notes:
+                      broken.append(f"{note}: [[{target}]]")
+              for target in re.findall(r"\]\(([^)#:]+\.md)\)", text):
+                  if not (note.parent / target).resolve().exists():
+                      broken.append(f"{note}: ({target})")
+          for b in broken:
+              print("BROKEN:", b)
+          sys.exit(1 if broken else 0)
+          PY
