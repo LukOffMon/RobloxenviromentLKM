@@ -2,6 +2,9 @@
 
 Punto de entrada de la documentación. Abre esta carpeta (`docs/`) como bóveda en Obsidian.
 
+- [[roadmap]] — tablero Kanban de lo que se está construyendo
+- [[dashboard]] — notas recientes, specs por estado y notas huérfanas (Dataview)
+
 ## Diseño de juego (GDD)
 - [[core-gameplay-loop]] — qué hace el jugador minuto a minuto
 - [[economy-systems]] — fuentes y sumideros de monedas

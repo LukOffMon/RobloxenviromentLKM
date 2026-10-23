@@ -17,7 +17,8 @@ Workspace profesional de ingeniería de software para desarrollo modular en Robl
 1. Instala [Rokit](https://github.com/rojo-rbx/rokit) y ejecuta `rokit install` en la raíz: instala Rojo, Selene, StyLua, Wally, luau-lsp y Lune en las versiones de `rokit.toml`.
 2. `rojo plugin install` instala el plugin de Rojo en Roblox Studio.
 3. Abre la carpeta en VS Code y acepta las extensiones recomendadas (`.vscode/extensions.json`).
-4. En Obsidian: *Open folder as vault* → `docs/`. Empieza por `Home.md`.
+4. En Obsidian: *Open folder as vault* → `docs/`, y acepta *Turn on community plugins* (Git, Dataview, Kanban ya vienen incluidos). Empieza por `Home.md`.
+5. En Studio: *Assistant → … → Manage MCP Servers → Enable Studio as MCP server*. Claude Code usa el servidor `Roblox_Studio` de `.mcp.json` para construir y probar dentro de Studio.
 
 ## Uso diario
 ```bash

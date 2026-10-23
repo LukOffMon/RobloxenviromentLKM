@@ -8,6 +8,10 @@ Reglas de estilo y arquitectura completas: `AI_SYSTEM_INSTRUCTIONS.md` (sección
 - Sincronizar con Studio: `rojo serve` y pulsar Connect en el plugin de Rojo.
 - Herramientas fijadas en `rokit.toml`; `rokit install` en una máquina nueva. Paquetes: declarar en `wally.toml`, luego `wally install`.
 
+## Studio y Obsidian
+- Servidor MCP `Roblox_Studio` (`.mcp.json`) controla el Studio abierto: mundo, assets, playtests, capturas. Ver el skill `roblox-studio-build`.
+- `docs/` es la bóveda de Obsidian (wikilinks `[[nota]]`, plugins Git, Dataview y Kanban). Roadmap en `docs/roadmap.md` (formato Kanban: no romper los encabezados `##` ni el bloque `kanban:settings`). Specs nuevas en `docs/specs/` desde la plantilla, con frontmatter `estado`/`metrica`.
+
 ## Estructura
 - `src/server` → ServerScriptService.Server · `src/client` → StarterPlayerScripts.Client · `src/shared` → ReplicatedStorage.Shared
 - `*.server.luau` / `*.client.luau` son scripts; el resto son ModuleScripts.

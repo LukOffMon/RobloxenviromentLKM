@@ -1,0 +1,13 @@
+{
+  "commitMessage": "docs: {{numFiles}} notas actualizadas desde Obsidian",
+  "autoCommitMessage": "docs: respaldo de la bóveda {{date}}",
+  "autoSaveInterval": 0,
+  "autoPushInterval": 0,
+  "autoPullInterval": 10,
+  "autoPullOnBoot": true,
+  "pullBeforePush": true,
+  "disablePush": false,
+  "syncMethod": "rebase",
+  "showStatusBar": true,
+  "refreshSourceControl": true
+}

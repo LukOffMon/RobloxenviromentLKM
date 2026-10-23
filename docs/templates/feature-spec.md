@@ -1,6 +1,11 @@
+---
+estado: idea
+metrica: retención D1
+fecha: {{date}}
+---
 # {{title}}
 
-**Estado:** idea · **Fecha:** {{date}} · Relacionado: [[core-gameplay-loop]]
+Relacionado: [[core-gameplay-loop]] · Guardar en `docs/specs/`.
 
 ## Por qué
 Qué métrica mueve (retención D1/D7, sesión, conversión, ARPPU) y por qué creemos que la mueve.
