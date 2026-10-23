@@ -34,6 +34,11 @@ function Panel.new(parent: Instance, title: string, accent: Color3): Panel
 		scale,
 		Theme.corner(22),
 		Theme.stroke(accent, 4),
+		-- Sombreado vertical sutil para dar volumen al panel.
+		Theme.create("UIGradient", {
+			Rotation = 90,
+			Color = ColorSequence.new(Color3.new(1, 1, 1), Color3.fromRGB(150, 135, 190)),
+		}),
 		Theme.create("UISizeConstraint", { MinSize = Vector2.new(320, 300), MaxSize = Vector2.new(900, 640) }),
 	})
 

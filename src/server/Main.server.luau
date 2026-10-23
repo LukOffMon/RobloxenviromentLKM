@@ -10,6 +10,7 @@ local RemoteSignal = require(ReplicatedStorage.Shared.Network.RemoteSignal)
 
 local Services = script.Parent.Services
 local BattleService = require(Services.BattleService)
+local CandyService = require(Services.CandyService)
 local DailyService = require(Services.DailyService)
 local DataService = require(Services.DataService)
 local GachaService = require(Services.GachaService)
@@ -38,6 +39,7 @@ local trainingResult = outgoing("TrainingResult")
 local battleResult = outgoing("BattleResult")
 local dailyResult = outgoing("DailyResult")
 local notify = outgoing("Notify")
+local candyCollected = outgoing("CandyCollected")
 
 -- Cliente -> servidor ------------------------------------------------------------
 -- El cliente solo expresa intención; el servidor decide coste, resultado y recompensa.
@@ -169,6 +171,7 @@ PensionService.start()
 TrainingService.start()
 BattleService.start()
 WorldService.start()
+CandyService.start()
 
 DataService.ProfileLoaded:Connect(function(player: Player)
 	queuePush(player, "Full")
@@ -210,6 +213,10 @@ end)
 
 MonetizationService.BoxGranted:Connect(function(player: Player, results)
 	gachaResult:FireClient(player, results)
+end)
+
+CandyService.Collected:Connect(function(player: Player, reward, position: Vector3)
+	candyCollected:FireClient(player, reward, position)
 end)
 
 TrainingService.Finished:Connect(function(player: Player, result)

@@ -2,6 +2,7 @@
 -- Tests de la lógica pura de MonOG. Ejecutar: lune run tests/run.luau
 
 local BattleLogic = require("../src/shared/Logic/BattleLogic")
+local CandyLogic = require("../src/shared/Logic/CandyLogic")
 local DailyLogic = require("../src/shared/Logic/DailyLogic")
 local GachaLogic = require("../src/shared/Logic/GachaLogic")
 local OGCatalog = require("../src/shared/Configurations/OGCatalog")
@@ -216,6 +217,35 @@ test("racha diaria", function()
 	expect(can and streak == 1, "racha rota")
 	can, streak = DailyLogic.claim(10, 7, 11)
 	expect(can and streak == 1, "nuevo ciclo tras el día 7")
+end)
+
+print("Caramelos")
+local CANDY = { CoinsMin = 8, CoinsMax = 20, TierBonus = 0.15, TicketChance = 0.02, GemChance = 0.01, Gems = 5 }
+
+test("las monedas del caramelo respetan el rango y crecen con el nivel de rival", function()
+	local rng = seeded(21)
+	for _ = 1, 2000 do
+		local low = CandyLogic.reward(rng, 1, CANDY)
+		expect(low.PensionCoins >= 8 and low.PensionCoins <= 20, "fuera de rango: " .. low.PensionCoins)
+	end
+	local always = function()
+		return 0.99
+	end
+	expect(CandyLogic.reward(always, 11, CANDY).PensionCoins == 50, "nivel 11 = 20 x 2.5")
+end)
+
+test("ticket y gemas nunca salen a la vez y respetan su probabilidad", function()
+	local rng = seeded(5)
+	local tickets, gems = 0, 0
+	local n = 100000
+	for _ = 1, n do
+		local reward = CandyLogic.reward(rng, 1, CANDY)
+		expect(not (reward.Tickets > 0 and reward.GigaGems > 0), "ambos a la vez")
+		tickets += reward.Tickets
+		gems += if reward.GigaGems > 0 then 1 else 0
+	end
+	expect(math.abs(tickets / n - 0.02) < 0.003, "tickets " .. tickets / n)
+	expect(math.abs(gems / n - 0.01) < 0.002, "gemas " .. gems / n)
 end)
 
 print(string.format("\n%d ok, %d fallidos", passed, failed))

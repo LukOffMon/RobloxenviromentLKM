@@ -15,6 +15,9 @@ Relacionado: [[monog-gdd]], [[core-gameplay-loop]], [[datastore-profile-schema]]
 - × multiplicador social: +15 % por amigo conectado en el servidor, máximo +75 %.
 - Offline: hasta 2 h al 50 %; con el pase «Pensión Offline Ampliada», 24 h al 100 %.
 
+## Caramelos de abuela (exploración)
+Hasta 30 caramelos de neón aparecen en los marcadores `CandySpawn` del mapa y reaparecen cada 4 s. Al tocarlos: 8–20 💰 × (1 + 0,15 por nivel de rival superado), 2 % de un ticket o 1 % de 5 💎. El servidor valida la distancia y los quita antes de pagar.
+
 ## Reglas
 - Todo cambio de moneda pasa por `DataService.adjust`, que rechaza decimales, saldo negativo y más de 10¹².
 - Se cobra **antes** de tirar del gacha: si el cobro falla, no hay tirada.

@@ -11,6 +11,9 @@ Relacionado: [[monog-gdd]], [[og-catalog]], [[world-building]] · Código: `src/
 
 Brillos de rareza en [[og-catalog]].
 
+## Ambiente
+`AtmosphereController` fija en el cliente la noche violeta: niebla (Atmosphere), bloom suave para el neón, saturación +0,28 y cielo con 6000 estrellas. Ofrece `flash(color)` (destello de rareza) y `punch()` (golpe de cámara), que usan el gacha, los especiales, los críticos y los K.O.
+
 ## Interfaz
 - Fuente FredokaOne; botones con contorno oscuro, degradado y efecto *squish & stretch* al pulsar.
 - Barra superior: PensionCoins (salta al subir), GigaGems (icono que oscila) y tickets.
@@ -22,6 +25,8 @@ Brillos de rareza en [[og-catalog]].
 Cabeza grande y cuerpo compacto, al estilo de las mascotas de Roblox. Por ahora se construyen con piezas básicas en el cliente (`PetController`): piel, pelo, ojos, gafas, bigote o barba y un accesorio (moño, sombrero de charro neón, gorra, cinta, casco). Los Legendarios o mejores emiten partículas; los Shiny llevan traje dorado.
 
 **Siguiente paso de arte:** sustituir las primitivas por MeshParts modeladas (Blender o `generate_mesh` del MCP de Studio) con el mismo contrato de colores.
+
+Las mascotas llevan brillo en los ojos, mejillas, andador (dorado de neón si son Shiny), aro de rareza en el suelo (arcoíris en Transcendentes) y saltitos con squish & stretch.
 
 ## Cinemática del gacha
 1. Zoom a la puerta del asilo y tres «¡TOC!» con temblor.

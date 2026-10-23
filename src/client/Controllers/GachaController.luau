@@ -5,10 +5,12 @@
 local MarketplaceService = game:GetService("MarketplaceService")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local TweenService = game:GetService("TweenService")
 
 local GameConfig = require(ReplicatedStorage.Shared.Configurations.GameConfig)
 local OGCatalog = require(ReplicatedStorage.Shared.Configurations.OGCatalog)
 
+local AtmosphereController = require(script.Parent.AtmosphereController)
 local HUDController = require(script.Parent.HUDController)
 local Net = require(script.Parent.Net)
 local OGVisuals = require(script.Parent.Parent.UI.OGVisuals)
@@ -381,6 +383,42 @@ local function playOne(result: any, fast: boolean)
 	Theme.tween(glow, 0.8, { BackgroundTransparency = 1, Size = UDim2.fromOffset(900, 900) })
 	confetti(overlay, color)
 	Sounds.play("Reward", 0.8 + rarity.Order * 0.08)
+	AtmosphereController.flash(color, 0.4 + rarity.Order * 0.25)
+	AtmosphereController.punch(4 + rarity.Order * 2)
+
+	-- Rayos de luz del color de la rareza girando detrás del OG.
+	local rays = Theme.create("Frame", {
+		AnchorPoint = Vector2.new(0.5, 0.5),
+		Position = UDim2.fromScale(0.5, 0.5),
+		Size = UDim2.fromOffset(10, 10),
+		BackgroundTransparency = 1,
+		ZIndex = 54,
+		Parent = overlay,
+	})
+	for i = 0, 7 do
+		Theme.create("Frame", {
+			AnchorPoint = Vector2.new(0.5, 0.5),
+			Position = UDim2.fromScale(0.5, 0.5),
+			Size = UDim2.fromOffset(900, 46),
+			Rotation = i * 22.5,
+			BackgroundColor3 = color,
+			BackgroundTransparency = if rarity.Order >= 4 then 0.55 else 0.75,
+			BorderSizePixel = 0,
+			ZIndex = 54,
+			Parent = rays,
+		}, {
+			Theme.create("UIGradient", {
+				Transparency = NumberSequence.new({
+					NumberSequenceKeypoint.new(0, 1),
+					NumberSequenceKeypoint.new(0.5, 0),
+					NumberSequenceKeypoint.new(1, 1),
+				}),
+			}),
+		})
+	end
+	TweenService
+		:Create(rays, TweenInfo.new(8, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1), { Rotation = 360 })
+		:Play()
 
 	local visual = OGVisuals.get(archetype.Id)
 	local card = Theme.create("Frame", {

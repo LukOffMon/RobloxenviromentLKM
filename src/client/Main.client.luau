@@ -4,7 +4,10 @@
 
 local ProximityPromptService = game:GetService("ProximityPromptService")
 
+local Sounds = require(script.Parent.UI.Sounds)
+
 local Controllers = script.Parent.Controllers
+local AtmosphereController = require(Controllers.AtmosphereController)
 local BattleController = require(Controllers.BattleController)
 local ChatTagController = require(Controllers.ChatTagController)
 local DailyController = require(Controllers.DailyController)
@@ -15,7 +18,9 @@ local Net = require(Controllers.Net)
 local PetController = require(Controllers.PetController)
 local State = require(Controllers.State)
 local TrainingController = require(Controllers.TrainingController)
+local WorldFXController = require(Controllers.WorldFXController)
 
+AtmosphereController.start()
 HUDController.start()
 local gui = HUDController.Gui :: ScreenGui
 
@@ -25,6 +30,7 @@ TrainingController.start(gui)
 BattleController.start(gui)
 DailyController.start(gui)
 PetController.start()
+WorldFXController.start()
 ChatTagController.start()
 
 Net.get("ProfileUpdated"):Connect(function(view: any)
@@ -36,6 +42,26 @@ end)
 Net.get("CurrencyUpdated"):Connect(function(view: any)
 	if type(view) == "table" then
 		State.setCurrencies(view)
+	end
+end)
+
+Net.get("CandyCollected"):Connect(function(reward: any, position: any)
+	if type(reward) ~= "table" or typeof(position) ~= "Vector3" then
+		return
+	end
+	local text = "+" .. reward.PensionCoins .. " 💰"
+	local color = Color3.fromHex("#FFD700")
+	if reward.Tickets > 0 then
+		text ..= "  +1 🎟"
+		color = Color3.fromHex("#FF3EA5")
+	elseif reward.GigaGems > 0 then
+		text ..= "  +" .. reward.GigaGems .. " 💎"
+		color = Color3.fromHex("#20E3E0")
+	end
+	WorldFXController.popAt(position, text, color)
+	Sounds.play("Reward", 1.2 + math.random() * 0.3)
+	if reward.Tickets > 0 or reward.GigaGems > 0 then
+		AtmosphereController.flash(color, 0.6)
 	end
 end)
 
@@ -72,17 +98,20 @@ end)
 Net.get("RequestProfile"):Fire()
 
 -- Gancho de los primeros segundos: si hay una caja gratis, abrir el Asilo directamente.
-local connection: RBXScriptConnection? = nil
-connection = State.Changed:Connect(function(kind)
+-- Se comprueba también al arrancar, por si el perfil llegó antes de empezar a escuchar.
+local welcomed = false
+local function tryWelcome()
 	local profile = State.Profile
-	if kind == "Full" and profile then
-		if connection then
-			connection:Disconnect()
-		end
-		if profile.Tickets > 0 and next(profile.OGs) == nil then
-			task.wait(1.5)
+	if welcomed or profile == nil then
+		return
+	end
+	welcomed = true
+	if profile.Tickets > 0 and next(profile.OGs) == nil then
+		task.delay(1.5, function()
 			HUDController.toast("¡Bienvenido a MonOG! Tienes una Caja de Asilo GRATIS 🎁", "Reward")
 			GachaController.open()
-		end
+		end)
 	end
-end)
+end
+State.Changed:Connect(tryWelcome)
+tryWelcome()

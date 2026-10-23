@@ -120,6 +120,19 @@ local GameConfig = table.freeze({
 
 	Daily = table.freeze(DAILY_REWARDS),
 
+	-- Caramelos de abuela: aparecen en los marcadores CandySpawn del mapa.
+	Candy = table.freeze({
+		MaxActive = 30,
+		RespawnSeconds = 4,
+		PickupRadius = 9,
+		CoinsMin = 8,
+		CoinsMax = 20,
+		TierBonus = 0.15,
+		TicketChance = 0.02,
+		GemChance = 0.01,
+		Gems = 5,
+	}),
+
 	-- Id = 0 significa "aún no creado en el Creator Hub": el botón se muestra desactivado.
 	-- Pasos para crearlos en docs/gdd/monetization-and-growth.md
 	Products = table.freeze({

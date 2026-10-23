@@ -4,22 +4,36 @@
     "$className": "DataModel",
     "ServerScriptService": {
       "$className": "ServerScriptService",
-      "Server": { "$path": "src/server" }
+      "Server": {
+        "$path": "src/server"
+      }
     },
     "ReplicatedStorage": {
       "$className": "ReplicatedStorage",
-      "Shared": { "$path": "src/shared" }
+      "Shared": {
+        "$path": "src/shared"
+      }
     },
     "StarterPlayer": {
       "$className": "StarterPlayer",
       "StarterPlayerScripts": {
         "$className": "StarterPlayerScripts",
-        "Client": { "$path": "src/client" }
+        "Client": {
+          "$path": "src/client"
+        }
       }
     },
     "Lighting": {
       "$className": "Lighting",
-      "$properties": { "ClockTime": 0, "Brightness": 2, "Ambient": [0.35, 0.3, 0.5] }
+      "$properties": {
+        "ClockTime": 0,
+        "Brightness": 2,
+        "Ambient": [
+          0.35,
+          0.3,
+          0.5
+        ]
+      }
     },
     "Workspace": {
       "$className": "Workspace",
@@ -27,34 +41,87 @@
         "$className": "Part",
         "$properties": {
           "Anchored": true,
-          "Size": [256, 2, 256],
-          "Position": [0, -1, 0],
-          "Color": [0.1, 0.04, 0.2],
+          "Size": [
+            256,
+            2,
+            256
+          ],
+          "Position": [
+            0,
+            -1,
+            0
+          ],
+          "Color": [
+            0.1,
+            0.04,
+            0.2
+          ],
           "Material": "SmoothPlastic"
         }
       },
       "SpawnLocation": {
         "$className": "SpawnLocation",
-        "$properties": { "Anchored": true, "Neutral": true, "Size": [8, 1, 8], "Position": [0, 0.5, 20] }
+        "$properties": {
+          "Anchored": true,
+          "Neutral": true,
+          "Size": [
+            8,
+            1,
+            8
+          ],
+          "Position": [
+            0,
+            0.5,
+            20
+          ]
+        }
       },
       "AdoptionDoor": {
         "$className": "Part",
         "$properties": {
           "Anchored": true,
-          "Size": [8, 12, 1],
-          "Position": [-20, 6, 0],
-          "Color": [0.43, 0.24, 0.12],
-          "Tags": ["GachaDoor"]
+          "Size": [
+            8,
+            12,
+            1
+          ],
+          "Position": [
+            -20,
+            6,
+            0
+          ],
+          "Color": [
+            0.43,
+            0.24,
+            0.12
+          ],
+          "Tags": [
+            "GachaDoor"
+          ]
         }
       },
       "TrainingBench": {
         "$className": "Part",
         "$properties": {
           "Anchored": true,
-          "Size": [6, 1, 2],
-          "Position": [20, 1, 0],
-          "Color": [0.55, 0.35, 0.2],
-          "Tags": ["TrainingBench"]
+          "Size": [
+            6,
+            1,
+            2
+          ],
+          "Position": [
+            20,
+            1,
+            0
+          ],
+          "Color": [
+            0.55,
+            0.35,
+            0.2
+          ],
+          "Tags": [
+            "TrainingBench"
+          ]
         }
       },
       "BattlePad": {
@@ -62,36 +129,668 @@
         "$properties": {
           "Anchored": true,
           "Shape": "Cylinder",
-          "Size": [1, 16, 16],
-          "Position": [0, 0.5, -24],
-          "Orientation": [0, 0, 90],
+          "Size": [
+            1,
+            16,
+            16
+          ],
+          "Position": [
+            0,
+            0.5,
+            -24
+          ],
+          "Orientation": [
+            0,
+            0,
+            90
+          ],
           "Material": "Neon",
-          "Color": [0.22, 1, 0.08],
-          "Tags": ["BattlePad"]
+          "Color": [
+            0.22,
+            1,
+            0.08
+          ],
+          "Tags": [
+            "BattlePad"
+          ]
         }
       },
       "PodiumSlot1": {
         "$className": "Part",
         "$properties": {
           "Anchored": true,
-          "Size": [4, 6, 4],
-          "Position": [30, 3, -30],
-          "Color": [1, 0.84, 0],
-          "Tags": ["PodiumSlot"]
+          "Size": [
+            4,
+            6,
+            4
+          ],
+          "Position": [
+            30,
+            3,
+            -30
+          ],
+          "Color": [
+            1,
+            0.84,
+            0
+          ],
+          "Tags": [
+            "PodiumSlot"
+          ]
         },
-        "$attributes": { "Rank": 1 }
+        "$attributes": {
+          "Rank": 1
+        }
       },
       "ZoneGate3": {
         "$className": "Part",
         "$properties": {
           "Anchored": true,
-          "Size": [12, 14, 1],
-          "Position": [-30, 7, -30],
+          "Size": [
+            12,
+            14,
+            1
+          ],
+          "Position": [
+            -30,
+            7,
+            -30
+          ],
           "Material": "Neon",
-          "Color": [0.13, 0.89, 0.88],
-          "Tags": ["ZoneGate"]
+          "Color": [
+            0.13,
+            0.89,
+            0.88
+          ],
+          "Tags": [
+            "ZoneGate"
+          ]
         },
-        "$attributes": { "Zone": 3 }
+        "$attributes": {
+          "Zone": 3
+        }
+      },
+      "FX_SpinSign": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            10,
+            3,
+            1
+          ],
+          "Position": [
+            -20,
+            16,
+            0
+          ],
+          "Material": "Neon",
+          "Color": [
+            1,
+            0.24,
+            0.65
+          ],
+          "CanCollide": false,
+          "Tags": [
+            "Spin",
+            "NeonPulse"
+          ]
+        },
+        "$attributes": {
+          "SpinSpeed": 60
+        }
+      },
+      "FX_RainbowOrb": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Shape": "Ball",
+          "Size": [
+            4,
+            4,
+            4
+          ],
+          "Position": [
+            0,
+            10,
+            -24
+          ],
+          "Material": "Neon",
+          "CanCollide": false,
+          "Tags": [
+            "Bob",
+            "RainbowCycle"
+          ]
+        },
+        "$attributes": {
+          "BobHeight": 1.5
+        }
+      },
+      "FX_Bulb1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Shape": "Ball",
+          "Size": [
+            0.8,
+            0.8,
+            0.8
+          ],
+          "Position": [
+            -23,
+            13,
+            -0.8
+          ],
+          "Material": "Neon",
+          "Color": [
+            1,
+            0.84,
+            0
+          ],
+          "CanCollide": false,
+          "Tags": [
+            "Blink"
+          ]
+        },
+        "$attributes": {
+          "BlinkIndex": 1
+        }
+      },
+      "FX_Bulb2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Shape": "Ball",
+          "Size": [
+            0.8,
+            0.8,
+            0.8
+          ],
+          "Position": [
+            -22,
+            13,
+            -0.8
+          ],
+          "Material": "Neon",
+          "Color": [
+            1,
+            0.84,
+            0
+          ],
+          "CanCollide": false,
+          "Tags": [
+            "Blink"
+          ]
+        },
+        "$attributes": {
+          "BlinkIndex": 2
+        }
+      },
+      "FX_Bulb3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Shape": "Ball",
+          "Size": [
+            0.8,
+            0.8,
+            0.8
+          ],
+          "Position": [
+            -21,
+            13,
+            -0.8
+          ],
+          "Material": "Neon",
+          "Color": [
+            1,
+            0.84,
+            0
+          ],
+          "CanCollide": false,
+          "Tags": [
+            "Blink"
+          ]
+        },
+        "$attributes": {
+          "BlinkIndex": 3
+        }
+      },
+      "FX_Bulb4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Shape": "Ball",
+          "Size": [
+            0.8,
+            0.8,
+            0.8
+          ],
+          "Position": [
+            -20,
+            13,
+            -0.8
+          ],
+          "Material": "Neon",
+          "Color": [
+            1,
+            0.84,
+            0
+          ],
+          "CanCollide": false,
+          "Tags": [
+            "Blink"
+          ]
+        },
+        "$attributes": {
+          "BlinkIndex": 4
+        }
+      },
+      "FX_Bulb5": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Shape": "Ball",
+          "Size": [
+            0.8,
+            0.8,
+            0.8
+          ],
+          "Position": [
+            -19,
+            13,
+            -0.8
+          ],
+          "Material": "Neon",
+          "Color": [
+            1,
+            0.84,
+            0
+          ],
+          "CanCollide": false,
+          "Tags": [
+            "Blink"
+          ]
+        },
+        "$attributes": {
+          "BlinkIndex": 5
+        }
+      },
+      "FX_Bulb6": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Shape": "Ball",
+          "Size": [
+            0.8,
+            0.8,
+            0.8
+          ],
+          "Position": [
+            -18,
+            13,
+            -0.8
+          ],
+          "Material": "Neon",
+          "Color": [
+            1,
+            0.84,
+            0
+          ],
+          "CanCollide": false,
+          "Tags": [
+            "Blink"
+          ]
+        },
+        "$attributes": {
+          "BlinkIndex": 6
+        }
+      },
+      "FX_Bulb7": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Shape": "Ball",
+          "Size": [
+            0.8,
+            0.8,
+            0.8
+          ],
+          "Position": [
+            -17,
+            13,
+            -0.8
+          ],
+          "Material": "Neon",
+          "Color": [
+            1,
+            0.84,
+            0
+          ],
+          "CanCollide": false,
+          "Tags": [
+            "Blink"
+          ]
+        },
+        "$attributes": {
+          "BlinkIndex": 7
+        }
+      },
+      "FX_Bulb8": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Shape": "Ball",
+          "Size": [
+            0.8,
+            0.8,
+            0.8
+          ],
+          "Position": [
+            -16,
+            13,
+            -0.8
+          ],
+          "Material": "Neon",
+          "Color": [
+            1,
+            0.84,
+            0
+          ],
+          "CanCollide": false,
+          "Tags": [
+            "Blink"
+          ]
+        },
+        "$attributes": {
+          "BlinkIndex": 8
+        }
+      },
+      "FX_TreeTrunk": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            1.5,
+            8,
+            1.5
+          ],
+          "Position": [
+            30,
+            4,
+            15
+          ],
+          "Color": [
+            0.45,
+            0.3,
+            0.18
+          ]
+        }
+      },
+      "FX_TreeTop": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Shape": "Ball",
+          "Size": [
+            9,
+            9,
+            9
+          ],
+          "Position": [
+            30,
+            10,
+            15
+          ],
+          "Color": [
+            0.2,
+            0.75,
+            0.3
+          ],
+          "CanCollide": false,
+          "Tags": [
+            "Sway"
+          ]
+        }
+      },
+      "FX_RobotPigeon": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            1.2,
+            1,
+            1.8
+          ],
+          "Position": [
+            10,
+            0.5,
+            10
+          ],
+          "Material": "Metal",
+          "Color": [
+            0.6,
+            0.65,
+            0.75
+          ],
+          "CanCollide": false,
+          "Tags": [
+            "Walker"
+          ]
+        },
+        "$attributes": {
+          "WanderRadius": 8
+        }
+      },
+      "CandySpawn1": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Position": [
+            8,
+            0.5,
+            30
+          ],
+          "Transparency": 1,
+          "CanCollide": false,
+          "Tags": [
+            "CandySpawn"
+          ]
+        }
+      },
+      "CandySpawn2": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Position": [
+            -8,
+            0.5,
+            30
+          ],
+          "Transparency": 1,
+          "CanCollide": false,
+          "Tags": [
+            "CandySpawn"
+          ]
+        }
+      },
+      "CandySpawn3": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Position": [
+            15,
+            0.5,
+            0
+          ],
+          "Transparency": 1,
+          "CanCollide": false,
+          "Tags": [
+            "CandySpawn"
+          ]
+        }
+      },
+      "CandySpawn4": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Position": [
+            -10,
+            0.5,
+            -10
+          ],
+          "Transparency": 1,
+          "CanCollide": false,
+          "Tags": [
+            "CandySpawn"
+          ]
+        }
+      },
+      "CandySpawn5": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Position": [
+            25,
+            0.5,
+            -20
+          ],
+          "Transparency": 1,
+          "CanCollide": false,
+          "Tags": [
+            "CandySpawn"
+          ]
+        }
+      },
+      "CandySpawn6": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Position": [
+            -25,
+            0.5,
+            20
+          ],
+          "Transparency": 1,
+          "CanCollide": false,
+          "Tags": [
+            "CandySpawn"
+          ]
+        }
+      },
+      "CandySpawn7": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Position": [
+            0,
+            0.5,
+            40
+          ],
+          "Transparency": 1,
+          "CanCollide": false,
+          "Tags": [
+            "CandySpawn"
+          ]
+        }
+      },
+      "CandySpawn8": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Position": [
+            35,
+            0.5,
+            5
+          ],
+          "Transparency": 1,
+          "CanCollide": false,
+          "Tags": [
+            "CandySpawn"
+          ]
+        }
+      },
+      "CandySpawn9": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Position": [
+            -35,
+            0.5,
+            -5
+          ],
+          "Transparency": 1,
+          "CanCollide": false,
+          "Tags": [
+            "CandySpawn"
+          ]
+        }
+      },
+      "CandySpawn10": {
+        "$className": "Part",
+        "$properties": {
+          "Anchored": true,
+          "Size": [
+            1,
+            1,
+            1
+          ],
+          "Position": [
+            12,
+            0.5,
+            -35
+          ],
+          "Transparency": 1,
+          "CanCollide": false,
+          "Tags": [
+            "CandySpawn"
+          ]
+        }
       }
     }
   }

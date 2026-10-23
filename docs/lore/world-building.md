@@ -23,4 +23,19 @@ Constructor del mapa: `scripts/studio/build_monog_map.luau` (se ejecuta en Studi
 | `PodiumSlot` + atributo `Rank` 1–3 | Pedestales del podio | Nombre y nivel del top 3 del servidor |
 | `ZoneGate` + atributo `Zone` 3–4 | Portales de zonas futuras | Cartel «Próximamente» |
 
+| `CandySpawn` | Marcadores invisibles por todo el mapa (40–60) | Ahí aparecen los caramelos de abuela ([[economy-systems]]) |
+
+## Etiquetas de animación (WorldFXController, en el cliente)
+| Etiqueta | Efecto | Atributos |
+|---|---|---|
+| `Spin` | Gira sobre Y | `SpinSpeed` (grados/s, 45) |
+| `Bob` | Flota arriba y abajo | `BobHeight` (1), `BobSpeed` (1) |
+| `Sway` | Se mece (copas de árboles) | `SwayAngle` (4) |
+| `NeonPulse` | Late de brillo | `PulseSpeed` (1.5) |
+| `Blink` | Bombillas en cadena (marquesinas) | `BlinkIndex` 1..N |
+| `RainbowCycle` | Color arcoíris en bucle | — |
+| `Walker` | Deambula (palomas robóticas) | `WanderRadius` (10) |
+
+Funcionan sobre BasePart o Model con PrimaryPart y se pueden combinar (p. ej. `Spin` + `Bob`). Solo se animan a menos de 220 studs de la cámara.
+
 Todo vive bajo `Workspace/MonOGWorld`. Ajustes de streaming: radio 256, mínimo 128, `LowMemory`.

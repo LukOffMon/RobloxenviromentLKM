@@ -2,6 +2,7 @@
 -- Arena Central: reproduce el registro de combate que calculó el servidor.
 -- "Turn-Based Comedy": golpes con temblor, números elásticos y K.O. que salen volando.
 
+local AtmosphereController = require(script.Parent.AtmosphereController)
 local HUDController = require(script.Parent.HUDController)
 local Net = require(script.Parent.Net)
 local OGVisuals = require(script.Parent.Parent.UI.OGVisuals)
@@ -211,6 +212,7 @@ local function play(view: any)
 				end
 			end
 			banner("💥 " .. event.MoveName .. "!", Theme.rarityColor(fighterRarity))
+			AtmosphereController.flash(Theme.rarityColor(fighterRarity), 0.6)
 			wait(0.5)
 		end
 		for _, hit in event.Hits do
@@ -227,6 +229,9 @@ local function play(view: any)
 					if hit.Crit then 30 else 26
 				)
 				task.spawn(shake, target.Frame, if hit.Crit then 10 else 5, 0.2)
+				if hit.Crit then
+					AtmosphereController.punch(4)
+				end
 			end
 			local fraction = math.clamp(hit.HPAfter / target.MaxHP, 0, 1)
 			Theme.tween(target.Bar, if skipping then 0 else 0.25 / speed, {
@@ -238,6 +243,7 @@ local function play(view: any)
 				-- K.O. cómico: la carta sale disparada girando.
 				if not skipping then
 					Sounds.play("KO")
+					AtmosphereController.punch(8)
 					floatText(target.Frame, "¡K.O.!", C.Pink, 34)
 				end
 				local direction = if string.sub(hit.Target, 1, 1) == "A" then 1 else -1

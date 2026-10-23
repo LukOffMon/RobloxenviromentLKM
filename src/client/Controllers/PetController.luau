@@ -150,6 +150,94 @@ local function buildChibi(archetypeId: string, shiny: boolean): (Model, BasePart
 		helmet.Transparency = 0.6
 	end
 
+	-- Brillo en los ojos y mejillas sonrosadas: lo que más "vende" el estilo chibi.
+	local white = Color3.new(1, 1, 1)
+	part(
+		model,
+		"ShineL",
+		Enum.PartType.Ball,
+		Vector3.new(0.14, 0.14, 0.1),
+		white,
+		CFrame.new(-0.4, 2.05, -1.2),
+		Enum.Material.Neon
+	)
+	part(
+		model,
+		"ShineR",
+		Enum.PartType.Ball,
+		Vector3.new(0.14, 0.14, 0.1),
+		white,
+		CFrame.new(0.5, 2.05, -1.2),
+		Enum.Material.Neon
+	)
+	local cheek = Color3.fromRGB(255, 130, 150)
+	part(model, "CheekL", Enum.PartType.Ball, Vector3.new(0.5, 0.3, 0.15), cheek, CFrame.new(-0.78, 1.6, -0.98)).Transparency =
+		0.25
+	part(model, "CheekR", Enum.PartType.Ball, Vector3.new(0.5, 0.3, 0.15), cheek, CFrame.new(0.78, 1.6, -0.98)).Transparency =
+		0.25
+
+	-- El andador del GDD: plateado normal, dorado de neón en la Edición Dorada.
+	local walkerColor = if shiny then Color3.fromHex("#FFD700") else Color3.fromRGB(190, 196, 208)
+	local walkerMaterial = if shiny then Enum.Material.Neon else Enum.Material.Metal
+	part(
+		model,
+		"WalkerL",
+		Enum.PartType.Block,
+		Vector3.new(0.16, 1.7, 0.16),
+		walkerColor,
+		CFrame.new(-0.95, -0.15, -1.55),
+		walkerMaterial
+	)
+	part(
+		model,
+		"WalkerR",
+		Enum.PartType.Block,
+		Vector3.new(0.16, 1.7, 0.16),
+		walkerColor,
+		CFrame.new(0.95, -0.15, -1.55),
+		walkerMaterial
+	)
+	part(
+		model,
+		"WalkerBar",
+		Enum.PartType.Block,
+		Vector3.new(2.06, 0.16, 0.16),
+		walkerColor,
+		CFrame.new(0, 0.7, -1.55),
+		walkerMaterial
+	)
+	part(
+		model,
+		"WheelL",
+		Enum.PartType.Ball,
+		Vector3.new(0.35, 0.35, 0.35),
+		Color3.fromRGB(40, 40, 50),
+		CFrame.new(-0.95, -1, -1.55)
+	)
+	part(
+		model,
+		"WheelR",
+		Enum.PartType.Ball,
+		Vector3.new(0.35, 0.35, 0.35),
+		Color3.fromRGB(40, 40, 50),
+		CFrame.new(0.95, -1, -1.55)
+	)
+
+	-- Aro de rareza en el suelo: se lee de lejos qué tan raro es cada OG.
+	local ring = part(
+		model,
+		"AuraRing",
+		Enum.PartType.Cylinder,
+		Vector3.new(0.08, 3.4, 3.4),
+		rarityColor,
+		CFrame.new(0, -1.15, 0) * CFrame.Angles(0, 0, math.rad(90)),
+		Enum.Material.Neon
+	)
+	ring.Transparency = 0.55
+	if archetype and archetype.Rarity == "Transcendent" then
+		model:SetAttribute("Rainbow", true)
+	end
+
 	-- Brillo de rareza (Common apenas brilla; Transcendent ilumina la plaza).
 	local light = Instance.new("PointLight")
 	light.Color = rarityColor
@@ -263,9 +351,13 @@ local function step()
 			continue
 		end
 		local base = hrp.CFrame
+		local rainbow = Color3.fromHSV((now * 0.25) % 1, 0.9, 1)
 		for _, pet in pets do
-			-- Saltitos con squish: bota y se inclina un poco.
-			local hop = math.abs(math.sin(now * 5 + pet.Phase)) * 0.9
+			-- Saltitos con squish & stretch: se aplasta al tocar el suelo y se estira en el aire.
+			local wave = math.abs(math.sin(now * 5 + pet.Phase))
+			local hop = wave * 0.9
+			local squash = 1 - 0.2 * (1 - math.min(wave / 0.3, 1)) + 0.06 * wave
+			local widen = 1 + (1 - squash) * 0.6
 			local target = base * CFrame.new(pet.Offset) * CFrame.new(0, -1.6 + hop, 0)
 			local look = CFrame.lookAt(target.Position, target.Position + base.LookVector)
 			local current = pet.Root.CFrame
@@ -273,10 +365,20 @@ local function step()
 			if (current.Position - look.Position).Magnitude > 40 then
 				goal = look
 			end
+			local isRainbow = pet.Model:GetAttribute("Rainbow") == true
 			for _, child in pet.Model:GetChildren() do
 				if child:IsA("BasePart") then
 					local offset = child:GetAttribute("Offset")
-					child.CFrame = if typeof(offset) == "CFrame" then goal * offset else goal
+					if typeof(offset) == "CFrame" then
+						local p = offset.Position
+						local squished = Vector3.new(p.X * widen, p.Y * squash, p.Z * widen)
+						child.CFrame = goal * CFrame.new(squished) * offset.Rotation
+					else
+						child.CFrame = goal
+					end
+					if isRainbow and child.Name == "AuraRing" then
+						child.Color = rainbow
+					end
 				end
 			end
 		end
