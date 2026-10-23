@@ -7,12 +7,12 @@ Un mundo abierto Toon-Cyber de noche, dividido en 4 áreas de progresión alrede
 
 | Zona | Rol | Estado |
 |---|---|---|
-| Plaza Central / Arena | Hub social: Arena hexagonal con gradas, podio del top 3, Edificio de Adopción (gacha), futuro Bazar | 🟡 en el script, sin aplicar en Studio |
-| Zona 1: El Parque | Inicio: césped, árboles cartoon, bancos de entrenamiento, palomas robóticas | 🟡 igual |
-| Zona 3: Ciber-Asilo | Mid-late game: pasillos de cristal, hidromasaje, cápsulas criogénicas | ⏳ portal cerrado |
-| Zona 4: Galaxia OG | Estación espacial con gravedad cero | ⏳ portal cerrado |
+| Plaza Central / Arena | Hub social en el centro del mundo: Arena hexagonal con gradas abierta al sur, focos y `BattlePad`; podio del top 3 al sureste; Edificio de Adopción al norte (gacha); futuro Bazar | 🟢 en Studio |
+| Zona 1: El Parque | Inicio, al sur de la plaza: césped, árboles cartoon, flores, 4 bancos de entrenamiento, palomas robóticas y el `SpawnLocation` | 🟢 en Studio |
+| Zona 3: Ciber-Asilo | Mid-late game: pasillos de cristal, hidromasaje, cápsulas criogénicas. Ahora: portal al oeste con cápsulas | ⏳ portal cerrado |
+| Zona 4: Galaxia OG | Estación espacial con gravedad cero. Ahora: portal al este con estrellas y planeta | ⏳ portal cerrado |
 
-Constructor del mapa: `scripts/studio/build_monog_map.luau` (se ejecuta en Studio con el MCP).
+Constructor del mapa: `scripts/studio/build_monog_map.luau` (se ejecuta en Studio con el MCP). El mundo está centrado en X = +800 para no solaparse con Isla Origen, que se conserva archivada en `ServerStorage/Archive_IslaOrigen`.
 
 ## Contrato con el código (etiquetas de CollectionService)
 | Etiqueta | Dónde | Qué hace el código |
